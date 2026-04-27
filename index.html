@@ -693,6 +693,271 @@
   .holo-card strong { font-family: "Space Grotesk"; font-size: clamp(45px, 8vw, 96px); line-height: .85; color: var(--accent); }
   .holo-card span { color: var(--muted); max-width: 330px; line-height: 1.45; }
 
+  .reel-section {
+    padding: 110px 0;
+    background:
+      radial-gradient(circle at 80% 15%, rgba(255,103,72,.11), transparent 20rem),
+      radial-gradient(circle at 18% 80%, rgba(106,141,255,.12), transparent 22rem);
+    overflow: hidden;
+  }
+  .reel-head {
+    display: grid;
+    grid-template-columns: 1fr .72fr;
+    gap: 34px;
+    align-items: end;
+    margin-bottom: 30px;
+  }
+  .reel-head h2 { max-width: 980px; }
+  .reel-shell {
+    border: 1px solid var(--line);
+    background: rgba(11,16,23,.82);
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 720px;
+    position: relative;
+  }
+  .reel-menu {
+    border-right: 1px solid var(--line);
+    padding: 16px;
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    background: rgba(7,9,13,.42);
+  }
+  .reel-tab {
+    min-height: 94px;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.04);
+    text-align: left;
+    padding: 14px;
+    cursor: pointer;
+    display: grid;
+    gap: 8px;
+    transition: border-color .2s ease, background .2s ease, transform .2s ease;
+  }
+  .reel-tab:hover, .reel-tab.active {
+    transform: translateX(6px);
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 13%, transparent);
+  }
+  .reel-tab b { font-size: 17px; }
+  .reel-tab span { color: var(--muted); font-size: 13px; line-height: 1.3; }
+  .reel-stage {
+    position: relative;
+    overflow: hidden;
+    min-height: 720px;
+  }
+  .reel-top {
+    height: 56px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    color: var(--dim);
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .reel-progress {
+    width: 180px;
+    height: 8px;
+    background: rgba(255,255,255,.1);
+    overflow: hidden;
+  }
+  .reel-progress span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--acid);
+    animation: reelProgress 7s linear infinite;
+  }
+  @keyframes reelProgress { to { width: 100%; } }
+  .reel-scene {
+    position: absolute;
+    inset: 56px 0 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(.98);
+    transition: opacity .35s ease, transform .35s ease;
+    display: grid;
+    grid-template-columns: .86fr 1.14fr;
+    gap: 24px;
+    padding: 28px;
+  }
+  .reel-scene.active { opacity: 1; pointer-events: auto; transform: none; }
+  .reel-copy {
+    display: grid;
+    align-content: end;
+    gap: 18px;
+    min-height: 100%;
+  }
+  .reel-copy h3 { font-size: clamp(34px, 5vw, 72px); max-width: 560px; }
+  .reel-copy p { max-width: 520px; }
+  .reel-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .reel-tags span {
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.05);
+    padding: 8px 10px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .video-card {
+    border: 1px solid var(--line);
+    background:
+      linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(255,255,255,.055) 1px, transparent 1px),
+      #080c12;
+    background-size: 30px 30px;
+    min-height: 560px;
+    position: relative;
+    overflow: hidden;
+  }
+  .video-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 44%);
+    opacity: .9;
+  }
+  .video-frame {
+    position: absolute;
+    inset: 26px;
+    border: 1px solid color-mix(in srgb, var(--accent) 54%, transparent);
+    background: rgba(7,9,13,.76);
+    overflow: hidden;
+    box-shadow: 0 0 80px color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+  .web-film .browser {
+    position: absolute;
+    inset: 28px;
+    display: grid;
+    grid-template-rows: 42px 1fr;
+    border: 1px solid var(--line);
+    background: #0c1118;
+    animation: floatFilm 5s ease-in-out infinite;
+  }
+  .browser-top {
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 14px;
+  }
+  .browser-top i { width: 10px; height: 10px; background: var(--accent); display: block; }
+  .browser-body {
+    padding: 22px;
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 16px;
+    transform: translateY(0);
+    animation: webScroll 7s ease-in-out infinite;
+  }
+  .web-hero, .web-panel {
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.06);
+    padding: 16px;
+  }
+  .web-hero { min-height: 310px; background: color-mix(in srgb, var(--accent) 15%, #0c1118); }
+  .web-title { width: 80%; height: 24px; background: var(--ink); margin-bottom: 16px; }
+  .web-line { height: 10px; background: rgba(255,255,255,.25); margin: 10px 0; }
+  .web-line.short { width: 58%; }
+  @keyframes webScroll { 50% { transform: translateY(-38px); } }
+  @keyframes floatFilm { 50% { transform: translateY(-8px) rotate(.4deg); } }
+
+  .crm-film .kanban {
+    position: absolute;
+    inset: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .lane {
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.04);
+    padding: 12px;
+    display: grid;
+    align-content: start;
+    gap: 10px;
+  }
+  .lane b { color: var(--accent); font-size: 13px; }
+  .deal-card {
+    min-height: 74px;
+    border: 1px solid var(--line);
+    background: rgba(7,9,13,.82);
+    padding: 10px;
+    color: var(--muted);
+    font-size: 12px;
+    animation: dealMove 6s ease-in-out infinite;
+  }
+  .lane:nth-child(2) .deal-card { animation-delay: .8s; }
+  .lane:nth-child(3) .deal-card { animation-delay: 1.6s; }
+  @keyframes dealMove { 50% { transform: translateY(18px); border-color: var(--accent); } }
+
+  .ads-film .ad-orbit {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: min(72%, 420px);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border: 18px solid rgba(255,255,255,.08);
+    border-top-color: var(--accent);
+    border-right-color: var(--cyan);
+    border-bottom-color: var(--coral);
+    display: grid;
+    place-items: center;
+    animation: spinAds 10s linear infinite;
+  }
+  .ad-orbit span {
+    animation: spinBack 10s linear infinite;
+    text-align: center;
+    font-family: "Space Grotesk";
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: .9;
+  }
+  .ad-bars {
+    position: absolute;
+    left: 28px; right: 28px; bottom: 28px;
+    display: grid;
+    gap: 10px;
+  }
+  .ad-bars i {
+    height: 12px;
+    width: var(--w);
+    display: block;
+    background: var(--accent);
+    animation: barPulse 2.8s ease-in-out infinite alternate;
+  }
+  .ad-bars i:nth-child(2) { --w: 72%; background: var(--cyan); animation-delay: .4s; }
+  .ad-bars i:nth-child(3) { --w: 54%; background: var(--coral); animation-delay: .8s; }
+  @keyframes spinAds { to { transform: translate(-50%, -50%) rotate(360deg); } }
+  @keyframes spinBack { to { transform: rotate(-360deg); } }
+  @keyframes barPulse { from { width: 18%; } to { width: var(--w); } }
+
+  .apps-film .app-grid {
+    position: absolute;
+    inset: 28px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 8px;
+  }
+  .app-cell {
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.05);
+    animation: appBlink 4s ease-in-out infinite;
+  }
+  .app-cell:nth-child(3n) { background: color-mix(in srgb, var(--accent) 15%, transparent); animation-delay: .3s; }
+  .app-cell:nth-child(4n) { background: rgba(53,231,209,.12); animation-delay: .8s; }
+  .app-cell:nth-child(9), .app-cell:nth-child(16), .app-cell:nth-child(23), .app-cell:nth-child(30) {
+    background: var(--accent);
+    box-shadow: 0 0 28px color-mix(in srgb, var(--accent) 48%, transparent);
+  }
+  @keyframes appBlink { 50% { transform: scale(.92); opacity: .72; } }
+
   .builder {
     min-height: 100svh;
     padding: 110px 0;
@@ -836,7 +1101,7 @@
   @media (max-width: 980px) {
     .nav { grid-template-columns: 1fr auto; }
     .nav-links { display: none; }
-    .hero-layout, .trust-grid, .diagnostic-body, .stage-grid, .lab-head, .service-cockpit, .builder-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero-layout, .trust-grid, .diagnostic-body, .stage-grid, .lab-head, .service-cockpit, .reel-head, .reel-shell, .reel-scene, .builder-grid, .contact-grid { grid-template-columns: 1fr; }
     .signal-board { min-height: 560px; }
     .live-map { min-height: 506px; }
     .trust-copy, .diagnostic { min-height: auto; }
@@ -844,6 +1109,11 @@
     .service-panel { grid-template-columns: 1fr; position: relative; inset: auto; display: none; }
     .service-panel.active { display: grid; }
     .cockpit-screen { min-height: auto; }
+    .reel-shell, .reel-stage { min-height: auto; }
+    .reel-menu { border-right: 0; border-bottom: 1px solid var(--line); grid-template-columns: repeat(2, 1fr); }
+    .reel-scene { position: relative; inset: auto; display: none; min-height: auto; }
+    .reel-scene.active { display: grid; }
+    .video-card { min-height: 460px; }
     .weeks { grid-template-columns: repeat(2, 1fr); }
   }
 
@@ -884,6 +1154,20 @@
     .service-cockpit { gap: 14px; }
     .cockpit-tab:hover, .cockpit-tab.active { transform: none; }
     .holo { min-height: 320px; }
+    .reel-section { padding: 76px 0; }
+    .reel-menu { grid-template-columns: 1fr; }
+    .reel-tab:hover, .reel-tab.active { transform: none; }
+    .reel-scene { padding: 14px; gap: 16px; }
+    .reel-copy h3 { font-size: clamp(32px, 10vw, 48px); }
+    .video-card { min-height: 360px; }
+    .video-frame { inset: 14px; }
+    .web-film .browser, .crm-film .kanban, .apps-film .app-grid { inset: 16px; }
+    .browser-body { grid-template-columns: 1fr; padding: 14px; }
+    .web-hero { min-height: 160px; }
+    .crm-film .kanban { grid-template-columns: 1fr; }
+    .lane:nth-child(3) { display: none; }
+    .ads-film .ad-orbit { width: 74%; }
+    .ad-orbit span { font-size: 30px; }
     .toggle-grid, .weeks { grid-template-columns: 1fr; }
     .result-output .line { grid-template-columns: 1fr; }
   }
@@ -910,6 +1194,7 @@
     <a href="#confianza">Confianza</a>
     <a href="#sistema">Sistema</a>
     <a href="#servicios">Servicios</a>
+    <a href="#showreel">Showreel</a>
     <a href="#paquete">Paquete</a>
     <a href="#contacto">Contacto</a>
   </div>
@@ -1134,6 +1419,110 @@
               </ul>
             </div>
             <div class="holo"><div class="holo-card"><strong>APP</strong><span>Convierte procesos raros o repetidos en una herramienta propia.</span></div></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reel-section" id="showreel">
+    <div class="wrap">
+      <div class="reel-head">
+        <div>
+          <div class="eyebrow">Service showreel</div>
+          <h2>Videos generativos de lo que pasa cuando el sistema funciona.</h2>
+        </div>
+        <p>Son escenas animadas dentro de la página: no pesan como videos reales, cargan rápido y hacen que cada servicio se entienda de forma visual.</p>
+      </div>
+
+      <div class="reel-shell">
+        <div class="reel-menu" aria-label="Showreel de servicios">
+          <button class="reel-tab active" type="button" data-reel="web" style="--accent: var(--acid)"><b>Web en vivo</b><span>La oferta se ordena en una interfaz clara.</span></button>
+          <button class="reel-tab" type="button" data-reel="crm" style="--accent: var(--cyan)"><b>CRM en movimiento</b><span>Las oportunidades avanzan sin perder seguimiento.</span></button>
+          <button class="reel-tab" type="button" data-reel="ads" style="--accent: var(--coral)"><b>Ads aprendiendo</b><span>Los datos muestran qué mensaje tiene tracción.</span></button>
+          <button class="reel-tab" type="button" data-reel="apps" style="--accent: var(--blue)"><b>Apps a medida</b><span>Los procesos se convierten en herramienta.</span></button>
+        </div>
+
+        <div class="reel-stage">
+          <div class="reel-top">
+            <span id="reelTitle">Web en vivo</span>
+            <div class="reel-progress" aria-hidden="true"><span></span></div>
+          </div>
+
+          <article class="reel-scene active" data-reel-panel="web" style="--accent: var(--acid)">
+            <div class="reel-copy">
+              <div class="eyebrow">01 / Página web</div>
+              <h3>La web deja de ser cartel y empieza a explicar.</h3>
+              <p>La estructura guía al visitante: problema, solución, servicio, prueba, precio orientativo y contacto.</p>
+              <div class="reel-tags"><span>Copy claro</span><span>Mobile-first</span><span>Medición</span></div>
+            </div>
+            <div class="video-card web-film">
+              <div class="video-frame">
+                <div class="browser">
+                  <div class="browser-top"><i></i><i></i><i></i></div>
+                  <div class="browser-body">
+                    <div class="web-hero"><div class="web-title"></div><div class="web-line"></div><div class="web-line"></div><div class="web-line short"></div></div>
+                    <div class="web-panel"><div class="web-title"></div><div class="web-line"></div><div class="web-line short"></div></div>
+                    <div class="web-panel"><div class="web-title"></div><div class="web-line"></div><div class="web-line"></div></div>
+                    <div class="web-panel"><div class="web-title"></div><div class="web-line short"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="reel-scene" data-reel-panel="crm" style="--accent: var(--cyan)">
+            <div class="reel-copy">
+              <div class="eyebrow">02 / CRM</div>
+              <h3>Las consultas se transforman en pipeline.</h3>
+              <p>El negocio ve qué oportunidades están nuevas, cuáles necesitan respuesta y cuáles están listas para cerrar.</p>
+              <div class="reel-tags"><span>Seguimiento</span><span>Prioridad</span><span>Control</span></div>
+            </div>
+            <div class="video-card crm-film">
+              <div class="video-frame">
+                <div class="kanban">
+                  <div class="lane"><b>Nuevos</b><div class="deal-card">Lead WhatsApp</div><div class="deal-card">Formulario web</div></div>
+                  <div class="lane"><b>En proceso</b><div class="deal-card">Diagnóstico</div><div class="deal-card">Propuesta enviada</div></div>
+                  <div class="lane"><b>Cierre</b><div class="deal-card">Reunión agendada</div><div class="deal-card">Próximo paso</div></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="reel-scene" data-reel-panel="ads" style="--accent: var(--coral)">
+            <div class="reel-copy">
+              <div class="eyebrow">03 / Anuncios</div>
+              <h3>Meta y Google prueban mensajes hasta encontrar señal.</h3>
+              <p>La campaña no vive sola: aprende del CRM, de la web y de la calidad real de las consultas.</p>
+              <div class="reel-tags"><span>Meta</span><span>Google</span><span>Leads</span><span>Aprendizaje</span></div>
+            </div>
+            <div class="video-card ads-film">
+              <div class="video-frame">
+                <div class="ad-orbit"><span>ADS<br>DATA<br>SALES</span></div>
+                <div class="ad-bars"><i style="--w:86%"></i><i></i><i></i></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="reel-scene" data-reel-panel="apps" style="--accent: var(--blue)">
+            <div class="reel-copy">
+              <div class="eyebrow">04 / Aplicaciones</div>
+              <h3>Cuando una plantilla no alcanza, se diseña una herramienta propia.</h3>
+              <p>Paneles, cotizadores, reservas, calculadoras o automatizaciones internas para que el negocio opere mejor.</p>
+              <div class="reel-tags"><span>Herramientas</span><span>Automatización</span><span>Producto</span></div>
+            </div>
+            <div class="video-card apps-film">
+              <div class="video-frame">
+                <div class="app-grid" aria-hidden="true">
+                  <i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i>
+                  <i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i>
+                  <i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i>
+                  <i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i>
+                  <i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i>
+                  <i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i><i class="app-cell"></i>
+                </div>
+              </div>
+            </div>
           </article>
         </div>
       </div>
@@ -1372,6 +1761,26 @@
       scanner.style.setProperty("--scan", data.scan);
     });
   });
+
+  const reelTabs = Array.from(document.querySelectorAll(".reel-tab"));
+  const reelPanels = Array.from(document.querySelectorAll(".reel-scene"));
+  const reelTitle = document.getElementById("reelTitle");
+  let reelIndex = 0;
+  function setReel(index) {
+    reelIndex = (index + reelTabs.length) % reelTabs.length;
+    const activeTab = reelTabs[reelIndex];
+    const activeReel = activeTab.dataset.reel;
+    reelTabs.forEach((tab, i) => tab.classList.toggle("active", i === reelIndex));
+    reelPanels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reelPanel === activeReel));
+    reelTitle.textContent = activeTab.querySelector("b").textContent;
+  }
+  reelTabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => setReel(index));
+  });
+  setInterval(() => {
+    const reelBox = document.getElementById("showreel").getBoundingClientRect();
+    if (reelBox.top < innerHeight && reelBox.bottom > 0) setReel(reelIndex + 1);
+  }, 7000);
 
   const stackText = {
     web: ["Web", "La persona entiende qué ofrecés y tiene un camino claro para hablarte."],
