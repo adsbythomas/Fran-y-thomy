@@ -121,8 +121,8 @@
     letter-spacing: 0;
     line-height: .92;
   }
-  h1 { font-size: clamp(55px, 10.8vw, 148px); max-width: 1050px; }
-  h2 { font-size: clamp(42px, 7vw, 96px); max-width: 1030px; }
+  h1 { font-size: clamp(54px, 7.8vw, 112px); max-width: 1160px; text-wrap: balance; }
+  h2 { font-size: clamp(42px, 5.9vw, 84px); max-width: 1120px; text-wrap: balance; }
   h3 { font-size: clamp(26px, 3.8vw, 48px); }
   p { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.62; }
   .lead { color: var(--cream); font-size: clamp(20px, 2.4vw, 28px); max-width: 790px; }
@@ -153,8 +153,8 @@
   }
   .hero-layout {
     display: grid;
-    grid-template-columns: 1.04fr .96fr;
-    gap: 28px;
+    grid-template-columns: 1.35fr .85fr;
+    gap: 30px;
     align-items: end;
   }
   .hero-copy { display: grid; gap: 28px; }
@@ -296,6 +296,137 @@
   }
   @keyframes ticker { to { transform: translateX(-50%); } }
 
+  .trust-layer {
+    padding: 92px 0 106px;
+    background:
+      radial-gradient(circle at 15% 25%, rgba(216,255,56,.11), transparent 22rem),
+      linear-gradient(180deg, rgba(255,255,255,.035), transparent 60%);
+  }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .trust-copy {
+    border: 1px solid var(--line);
+    background: rgba(11,16,23,.78);
+    padding: 28px;
+    display: grid;
+    align-content: space-between;
+    gap: 28px;
+    min-height: 520px;
+    box-shadow: var(--shadow);
+  }
+  .trust-copy h2 { font-size: clamp(40px, 5vw, 72px); }
+  .proof-stack {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .proof {
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.045);
+    min-height: 132px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .proof b { font-family: "Space Grotesk"; font-size: 28px; color: var(--acid); }
+  .proof span { color: var(--muted); font-size: 13px; line-height: 1.35; }
+  .diagnostic {
+    border: 1px solid var(--line);
+    background: #0b1017;
+    min-height: 520px;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+  }
+  .diagnostic-top {
+    height: 54px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    color: var(--dim);
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .diagnostic-body {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 18px;
+  }
+  .pain-buttons { display: grid; gap: 10px; align-content: start; }
+  .pain {
+    min-height: 76px;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.045);
+    text-align: left;
+    padding: 14px;
+    cursor: pointer;
+    display: grid;
+    gap: 5px;
+    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .pain:hover, .pain.active {
+    transform: translateX(6px);
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+  .pain b { font-size: 16px; }
+  .pain span { color: var(--muted); font-size: 13px; line-height: 1.3; }
+  .scanner {
+    border: 1px solid var(--line);
+    background:
+      linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(255,255,255,.055) 1px, transparent 1px),
+      #080c12;
+    background-size: 28px 28px;
+    position: relative;
+    overflow: hidden;
+    min-height: 420px;
+    padding: 22px;
+    display: grid;
+    align-content: center;
+  }
+  .scanner::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    top: var(--scan, 12%);
+    height: 3px;
+    background: var(--acid);
+    box-shadow: 0 0 26px var(--acid), 0 0 90px rgba(216,255,56,.6);
+    transition: top .35s ease;
+  }
+  .scanner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent, rgba(216,255,56,.08), transparent);
+    transform: translateY(-45%);
+    animation: scanWash 4.8s ease-in-out infinite;
+  }
+  @keyframes scanWash {
+    50% { transform: translateY(45%); }
+  }
+  .scanner-output {
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(216,255,56,.35);
+    background: rgba(7,9,13,.86);
+    padding: 18px;
+    display: grid;
+    gap: 12px;
+  }
+  .scanner-output b { color: var(--acid); font-size: 18px; }
+  .scanner-output span { color: var(--muted); line-height: 1.45; }
+
   .section { min-height: 100svh; padding: 110px 0; position: relative; }
   .sticky-scene {
     min-height: 360svh;
@@ -311,12 +442,12 @@
   }
   .stage-grid {
     display: grid;
-    grid-template-columns: .85fr 1.15fr;
+    grid-template-columns: .95fr 1.05fr;
     gap: 34px;
     align-items: center;
   }
   .stage-copy { display: grid; gap: 24px; position: relative; z-index: 2; }
-  .stage-copy h2 { font-size: clamp(43px, 6.4vw, 88px); }
+  .stage-copy h2 { font-size: clamp(42px, 4.9vw, 68px); line-height: .96; max-width: 640px; }
   .stage-frame {
     min-height: 650px;
     border: 1px solid var(--line);
@@ -705,9 +836,10 @@
   @media (max-width: 980px) {
     .nav { grid-template-columns: 1fr auto; }
     .nav-links { display: none; }
-    .hero-layout, .stage-grid, .lab-head, .service-cockpit, .builder-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero-layout, .trust-grid, .diagnostic-body, .stage-grid, .lab-head, .service-cockpit, .builder-grid, .contact-grid { grid-template-columns: 1fr; }
     .signal-board { min-height: 560px; }
     .live-map { min-height: 506px; }
+    .trust-copy, .diagnostic { min-height: auto; }
     .stage-frame { min-height: 600px; }
     .service-panel { grid-template-columns: 1fr; position: relative; inset: auto; display: none; }
     .service-panel.active { display: grid; }
@@ -721,8 +853,9 @@
     .brand span:not(.brand-mark) { display: none; }
     .nav-cta .btn { min-height: 40px; padding: 0 12px; font-size: 13px; }
     .hero { padding-top: 96px; }
-    h1 { font-size: clamp(48px, 15vw, 76px); }
-    h2 { font-size: clamp(36px, 12vw, 58px); }
+    h1 { font-size: clamp(42px, 12vw, 62px); line-height: .98; }
+    h2 { font-size: clamp(34px, 10vw, 50px); line-height: .98; }
+    .lead { font-size: 18px; }
     .signal-board { min-height: 500px; }
     .live-map { min-height: 446px; }
     .center-core { width: 104px; height: 104px; font-size: 32px; }
@@ -732,8 +865,14 @@
     .module { width: 108px; min-height: 92px; padding: 10px; }
     .module b { font-size: 13px; }
     .module span { display: none; }
+    .trust-layer { padding: 70px 0; }
+    .trust-copy { padding: 18px; }
+    .proof-stack { grid-template-columns: 1fr; }
+    .diagnostic-body { padding: 14px; }
+    .scanner { min-height: 330px; }
     .sticky-scene { min-height: auto; }
     .sticky-stage { position: relative; padding: 78px 0; }
+    .stage-copy h2 { font-size: clamp(34px, 10vw, 50px); max-width: none; }
     .stage-frame { min-height: 500px; }
     .stage-slide { padding: 15px; }
     .stage-slide:not(.active) { display: none; }
@@ -768,6 +907,7 @@
     <span>Romann</span>
   </a>
   <div class="nav-links">
+    <a href="#confianza">Confianza</a>
     <a href="#sistema">Sistema</a>
     <a href="#servicios">Servicios</a>
     <a href="#paquete">Paquete</a>
@@ -823,6 +963,44 @@
       <span>WEB QUE EXPLICA</span><span>CRM QUE ORDENA</span><span>ADS QUE APRENDEN</span><span>APPS QUE RESUELVEN</span><span>NEGOCIO PLANIFICADO</span>
     </div>
   </div>
+
+  <section class="trust-layer" id="confianza">
+    <div class="wrap trust-grid">
+      <div class="trust-copy">
+        <div>
+          <div class="eyebrow">Confianza sin humo</div>
+          <h2>Antes de venderte algo, buscamos dónde está el bloqueo.</h2>
+        </div>
+        <p class="lead">La página tiene que sorprender, sí. Pero también tiene que dejar una sensación clara: Romann entiende negocio, ordena el proceso y ejecuta con criterio.</p>
+        <div class="proof-stack" aria-label="Pruebas de enfoque">
+          <div class="proof"><b>01</b><span>Diagnóstico de oferta, cliente, canal y seguimiento.</span></div>
+          <div class="proof"><b>02</b><span>Plan visible: qué se hace primero, por qué y cómo se mide.</span></div>
+          <div class="proof"><b>03</b><span>Ejecución mensual con aprendizaje, no entregables sueltos.</span></div>
+        </div>
+      </div>
+
+      <div class="diagnostic">
+        <div class="diagnostic-top">
+          <span>ROMANN / DIAGNOSTIC SCANNER</span>
+          <span id="scanScore">SEÑAL 82%</span>
+        </div>
+        <div class="diagnostic-body">
+          <div class="pain-buttons" aria-label="Problemas frecuentes">
+            <button class="pain active" type="button" data-pain="clarity" style="--accent: var(--acid)"><b>No se entiende lo que vendo</b><span>La oferta existe, pero la gente no capta el valor rápido.</span></button>
+            <button class="pain" type="button" data-pain="followup" style="--accent: var(--cyan)"><b>Se pierden consultas</b><span>Hay mensajes, planillas y seguimientos desordenados.</span></button>
+            <button class="pain" type="button" data-pain="traffic" style="--accent: var(--coral)"><b>Falta demanda</b><span>No llegan suficientes personas correctas al negocio.</span></button>
+            <button class="pain" type="button" data-pain="process" style="--accent: var(--blue)"><b>Hay procesos manuales</b><span>El equipo repite tareas que podrían funcionar mejor.</span></button>
+          </div>
+          <div class="scanner" id="scanner">
+            <div class="scanner-output">
+              <b id="scanTitle">Claridad comercial</b>
+              <span id="scanText">Convertimos la oferta en una explicación simple: qué hacés, para quién, qué incluye, cuánto cuesta orientativamente y cuál es el próximo paso.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="sticky-scene" id="sistema">
     <div class="sticky-stage">
@@ -967,7 +1145,7 @@
       <div class="eyebrow">Paquete mensual</div>
       <h2>USD 500 para operar el sistema completo.</h2>
       <div class="builder-grid">
-        <div class="price-machine reveal">
+        <div class="price-machine">
           <div>
             <div class="price"><strong>500</strong><span>USD / mes</span></div>
             <p>No es una caja rígida. Es una base mensual donde priorizamos lo que más impacto puede tener en ese momento.</p>
@@ -980,7 +1158,7 @@
           </div>
           <a class="btn" href="https://wa.me/541178243212?text=Hola%20Romann%2C%20quiero%20hablar%20sobre%20el%20paquete%20de%20500%20USD%20mensuales." target="_blank" rel="noopener">Consultar el paquete</a>
         </div>
-        <div class="result-panel reveal">
+        <div class="result-panel">
           <h3>Armá una combinación y mirá qué pasa.</h3>
           <p>Los cuatro módulos están incluidos. La interacción sirve para entender cómo cambia el foco si un negocio necesita más de una cosa que de otra.</p>
           <div class="result-output" id="resultOutput" aria-live="polite"></div>
@@ -999,7 +1177,7 @@
     <div class="wrap contact-grid">
       <div class="contact-copy reveal">
         <div class="eyebrow">Contacto directo</div>
-        <h2>Somos dos. Hablás con quienes piensan y ejecutan.</h2>
+        <h2>Hablás con un equipo que piensa negocio y ejecuta.</h2>
         <p class="lead">Contanos qué negocio tenés, qué querés lograr y qué está trabado. Si conviene algo particular, se charla. Si conviene el paquete completo, también.</p>
       </div>
       <aside class="contact-panel reveal">
@@ -1150,6 +1328,48 @@
       });
       servicePanels.forEach((panel) => panel.classList.toggle("active", panel.dataset.panel === service));
       screenTitle.textContent = tab.querySelector("b").textContent;
+    });
+  });
+
+  const scanData = {
+    clarity: {
+      title: "Claridad comercial",
+      text: "Convertimos la oferta en una explicación simple: qué hacés, para quién, qué incluye, cuánto cuesta orientativamente y cuál es el próximo paso.",
+      score: "SEÑAL 82%",
+      scan: "18%"
+    },
+    followup: {
+      title: "Seguimiento ordenado",
+      text: "Diseñamos un CRM simple para que cada consulta tenga estado, prioridad y próxima acción. Menos oportunidades perdidas, más control comercial.",
+      score: "SEÑAL 76%",
+      scan: "42%"
+    },
+    traffic: {
+      title: "Demanda medible",
+      text: "Armamos campañas en Meta y Google con mensajes claros, presupuesto controlado y lectura semanal de costo, calidad y aprendizajes.",
+      score: "SEÑAL 88%",
+      scan: "64%"
+    },
+    process: {
+      title: "Procesos escalables",
+      text: "Cuando una tarea se repite o no entra en una plantilla, diseñamos una aplicación o automatización simple para que el negocio gane velocidad.",
+      score: "SEÑAL 91%",
+      scan: "82%"
+    }
+  };
+  const painButtons = document.querySelectorAll(".pain");
+  const scanner = document.getElementById("scanner");
+  const scanTitle = document.getElementById("scanTitle");
+  const scanText = document.getElementById("scanText");
+  const scanScore = document.getElementById("scanScore");
+  painButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const data = scanData[button.dataset.pain];
+      painButtons.forEach((item) => item.classList.toggle("active", item === button));
+      scanTitle.textContent = data.title;
+      scanText.textContent = data.text;
+      scanScore.textContent = data.score;
+      scanner.style.setProperty("--scan", data.scan);
     });
   });
 
