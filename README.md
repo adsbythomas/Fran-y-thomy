@@ -1,120 +1,49 @@
-# Nova Digital — Landing Page
+# Romann
 
-Landing page de agencia de marketing digital full-service. Diseño dark + neón, enfoque en conversión, totalmente responsive.
+Landing page estática para **Romann**, agencia de desarrollo de negocio, páginas web, CRM, anuncios de Meta/Google y aplicaciones.
 
-## 🚀 Demo
+## Sitio
 
-Podés ver la web en vivo acá: [https://novadigital.com](#) *(agregar URL cuando esté deployada)*
+Dominio previsto: [https://romann.lat](https://romann.lat)
 
-## ✨ Características
+## Qué incluye
 
-- **Diseño dark + neón** — estética moderna de agencia tech
-- **100% responsive** — optimizada para desktop y mobile
-- **Orientada a conversión** — secciones diseñadas para vender
-- **Animaciones fluidas** — scroll reveals, cursor glow, hover effects
-- **Sin dependencias** — HTML, CSS y JavaScript vanilla puros
-- **Performance-first** — un único archivo, carga instantánea
-- **Botón flotante de WhatsApp** siempre visible
-- **Formulario integrado** que envía directo a WhatsApp
+- Página principal en `index.html`
+- Diseño responsive sin dependencias de build
+- Interacciones en JavaScript vanilla
+- Secciones de servicios, paquete mensual, equipo y contacto
+- Contacto directo por WhatsApp y email
 
-## 📂 Estructura del proyecto
+## Desarrollo local
 
-```
-nova-digital/
-├── index.html          # Landing page completa
-├── README.md           # Este archivo
-├── LICENSE             # Licencia MIT
-└── .gitignore          # Archivos ignorados por git
-```
+Como es HTML puro, podés abrir `index.html` directo en el navegador.
 
-## 🛠️ Stack técnico
-
-- **HTML5**
-- **CSS3** (custom properties, grid, flexbox, animations)
-- **JavaScript vanilla** (Intersection Observer para scroll reveals)
-- **Google Fonts**: Bricolage Grotesque, Manrope, JetBrains Mono
-
-## 🧩 Secciones
-
-1. **Hero** — propuesta de valor con urgencia (cupos disponibles)
-2. **Problema / Solución** — dolores del cliente vs. beneficios
-3. **Servicios** — los 4 pilares del negocio
-4. **Proceso** — cómo trabajamos en 4 pasos
-5. **Casos de éxito** — métricas reales con storytelling
-6. **FAQ** — resolución de objeciones frecuentes
-7. **CTA final** — última llamada a la acción
-8. **Footer** — datos de contacto
-
-## 🎨 Personalización rápida
-
-Para adaptar la landing a tu marca, abrí `index.html` y reemplazá:
-
-| Variable | Ubicación | Valor actual |
-|---|---|---|
-| Nombre de marca | Buscar `NOVA DIGITAL` | NOVA DIGITAL |
-| WhatsApp | Buscar `541170218400` | +54 11 7021-8400 |
-| Email | Buscar `hola@novadigital.com` | hola@novadigital.com |
-| Colores neón | `:root` al inicio del CSS | `--neon-1`, `--neon-2` |
-
-## 🚀 Cómo deployar
-
-### Opción 1 — GitHub Pages (gratis)
-
-1. Subí el repo a GitHub
-2. Andá a **Settings → Pages**
-3. En "Source" seleccioná `main` branch y `/ (root)`
-4. Tu sitio va a estar en `https://tuusuario.github.io/nova-digital/`
-
-### Opción 2 — Vercel (gratis, más rápido)
-
-1. Importá el repo en [vercel.com](https://vercel.com)
-2. Deploy automático en cada push
-3. Dominio custom gratis
-
-### Opción 3 — Netlify (gratis)
-
-1. Drag & drop del archivo en [netlify.com/drop](https://app.netlify.com/drop)
-2. O conectá el repo de GitHub
-
-## 🧪 Desarrollo local
-
-No necesitás nada especial — es HTML puro. Dos opciones:
-
-**Opción rápida:** abrí `index.html` directo en el navegador.
-
-**Opción con servidor local** (recomendada para testing real):
+Para probarlo con servidor local:
 
 ```bash
-# Con Python 3
-python3 -m http.server 8000
-
-# Con Node.js
-npx serve
-
-# Con PHP
-php -S localhost:8000
+python -m http.server 8000
 ```
 
-Después abrí `http://localhost:8000` en tu navegador.
+Después abrir:
 
-## 📱 Responsive
+```text
+http://localhost:8000
+```
 
-Probada en:
-- Desktop 1920px+
-- Laptop 1280px – 1440px
-- Tablet 768px – 1024px
-- Mobile 375px – 767px
+## Publicación en Hostinger
 
-## 📄 Licencia
+Subir el contenido del repositorio a la carpeta pública del hosting, normalmente `public_html`.
 
-MIT © 2026 — Ver archivo [LICENSE](./LICENSE)
+Archivos mínimos:
 
-## 👤 Autor
+- `index.html`
+- `.htaccess` si más adelante se agrega configuración especial
+- assets futuros si se crean imágenes, videos o archivos externos
 
-**Thomas Lehmann**
-- LinkedIn: [thomas-lehmann--](https://linkedin.com/in/thomas-lehmann--)
-- Portfolio: [thomaslehmann.media](https://thomaslehmann.media)
+Si el dominio `romann.lat` ya apunta al hosting, al reemplazar el `index.html` dentro de `public_html` la web queda publicada.
 
----
+## Contacto configurado
 
-⚡ Hecho con foco en resultados, no solo en diseño.
+- WhatsApp: `+54 11 7824-3212`
+- Email: `marketing@romann.lat`
+- Web: `romann.lat`
