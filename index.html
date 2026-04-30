@@ -812,10 +812,32 @@
   .reel-copy {
     display: grid;
     align-content: start;
-    gap: 14px;
+    gap: 12px;
   }
   .reel-copy h3 { font-size: clamp(24px, 3vw, 36px); max-width: 460px; line-height: 1.05; }
-  .reel-copy p { max-width: 460px; font-size: 15px; }
+  .reel-copy p { max-width: 460px; font-size: 15px; line-height: 1.5; }
+  .reel-list {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 0;
+    display: grid;
+    gap: 8px;
+  }
+  .reel-list li {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.45;
+    padding-left: 18px;
+    position: relative;
+  }
+  .reel-list li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: .55em;
+    width: 8px; height: 8px;
+    background: var(--accent);
+    opacity: .85;
+  }
   .reel-tags { display: flex; flex-wrap: wrap; gap: 8px; }
   .reel-tags span {
     border: 1px solid var(--line);
@@ -1733,110 +1755,40 @@
     </div>
   </div>
 
-  <section class="lab" id="servicios">
-    <div class="wrap">
-      <div class="lab-head">
-        <div>
-          <div class="eyebrow">Glosario · qué es cada cosa</div>
-          <h2>Las cuatro piezas, definidas.</h2>
-        </div>
-        <p>Acá explicamos qué es y para qué sirve cada una. En el resto de la página solo las nombramos por su nombre.</p>
-      </div>
-
-      <div class="service-cockpit reveal">
-        <div class="cockpit-menu" role="tablist" aria-label="Glosario">
-          <button class="cockpit-tab active" type="button" data-service="web" style="--accent: var(--acid)" aria-selected="true"><b>Web</b><span>La cara pública del negocio.</span></button>
-          <button class="cockpit-tab" type="button" data-service="crm" style="--accent: var(--cyan)" aria-selected="false"><b>CRM</b><span>El registro interno de las consultas.</span></button>
-          <button class="cockpit-tab" type="button" data-service="ads" style="--accent: var(--blue)" aria-selected="false"><b>Anuncios</b><span>Tráfico pago, medido y ajustado.</span></button>
-          <button class="cockpit-tab" type="button" data-service="apps" style="--accent: var(--acid-deep)" aria-selected="false"><b>Apps</b><span>Herramientas internas a medida.</span></button>
-        </div>
-
-        <div class="cockpit-screen">
-          <div class="screen-toolbar"><span id="screenTitle">Web</span><span>ROMANN · definición</span></div>
-
-          <article class="service-panel active" data-panel="web" style="--accent: var(--acid)">
-            <div class="service-text">
-              <h3>Web</h3>
-              <p>Es la explicación pública del negocio: qué hace, para quién, qué incluye y cómo seguir la conversación. No un folleto, una lectura guiada que responde sola las preguntas obvias.</p>
-              <ul>
-                <li>Arquitectura, textos, diseño y publicación.</li>
-                <li>Móvil como prioridad, no como adaptación.</li>
-                <li>Dominio, mail, WhatsApp y medición conectados.</li>
-              </ul>
-            </div>
-            <div class="holo"><div class="holo-card"><strong>WEB</strong><span>El negocio se explica sin que tengas que estar.</span></div></div>
-          </article>
-
-          <article class="service-panel" data-panel="crm" style="--accent: var(--cyan)">
-            <div class="service-text">
-              <h3>CRM</h3>
-              <p>Es la memoria del negocio: cada consulta entra, queda registrada con quién, qué pidió, en qué estado está y cuándo hay que volver a escribirle. Lo que vivía en cabezas, queda visible.</p>
-              <ul>
-                <li>Etapas: nuevo, conversación, propuesta, cierre.</li>
-                <li>Recordatorios para que nada quede sin respuesta.</li>
-                <li>Entrada única desde web, mensajería o mail.</li>
-              </ul>
-            </div>
-            <div class="holo"><div class="holo-card"><strong>CRM</strong><span>Las consultas dejan de depender de la memoria.</span></div></div>
-          </article>
-
-          <article class="service-panel" data-panel="ads" style="--accent: var(--blue)">
-            <div class="service-text">
-              <h3>Anuncios</h3>
-              <p>Hipótesis con presupuesto. Meta y Google permiten llegar a personas con intención; el trabajo es plantear hipótesis, medirlas y dejar que el sistema aprenda qué mensaje funciona y a qué costo.</p>
-              <ul>
-                <li>Estrategia, públicos, presupuesto y creatividad.</li>
-                <li>Pixel, conversiones y atribución configurados.</li>
-                <li>Lectura semanal de costo y calidad del lead.</li>
-              </ul>
-            </div>
-            <div class="holo"><div class="holo-card"><strong>ADS</strong><span>Tráfico medible que aprende qué mensaje convierte.</span></div></div>
-          </article>
-
-          <article class="service-panel" data-panel="apps" style="--accent: var(--acid-deep)">
-            <div class="service-text">
-              <h3>Apps</h3>
-              <p>Herramientas a medida cuando lo que existe no resuelve. Paneles internos, cotizadores, reservas, calculadoras o automatizaciones que conectan partes del negocio que hoy viven sueltas.</p>
-              <ul>
-                <li>Problema definido antes de escribir código.</li>
-                <li>Primera versión simple, validada con uso real.</li>
-                <li>Mantenimiento incluido mientras esté en uso.</li>
-              </ul>
-            </div>
-            <div class="holo"><div class="holo-card"><strong>APP</strong><span>Procesos repetitivos convertidos en herramienta propia.</span></div></div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="reel-section" id="showreel">
+  <section class="reel-section" id="servicios">
     <div class="wrap">
       <div class="reel-head">
         <div>
-          <div class="eyebrow">El sistema en movimiento</div>
-          <h2>Cómo se ve cada pieza cuando está operando.</h2>
+          <div class="eyebrow">Glosario · qué es y cómo se ve</div>
+          <h2>Las cuatro piezas, una por una.</h2>
         </div>
-        <p>Cuatro escenas animadas, una por módulo, que muestran el sistema en un día normal.</p>
+        <p>Acá viven las definiciones. Para qué sirve cada una y cómo se ve operando. En el resto de la página solo las nombramos por su nombre.</p>
       </div>
 
       <div class="reel-shell">
-        <div class="reel-menu" aria-label="Showreel de servicios">
-          <button class="reel-tab active" type="button" data-reel="web" style="--accent: var(--acid)"><b>Web</b><span>Página viva.</span></button>
-          <button class="reel-tab" type="button" data-reel="crm" style="--accent: var(--cyan)"><b>CRM</b><span>Pipeline en movimiento.</span></button>
-          <button class="reel-tab" type="button" data-reel="ads" style="--accent: var(--blue)"><b>Anuncios</b><span>Campañas aprendiendo.</span></button>
-          <button class="reel-tab" type="button" data-reel="apps" style="--accent: var(--acid-deep)"><b>Apps</b><span>Procesos resueltos.</span></button>
+        <div class="reel-menu" aria-label="Glosario de servicios">
+          <button class="reel-tab active" type="button" data-reel="web" style="--accent: var(--acid)"><b>Web</b><span>La cara pública del negocio.</span></button>
+          <button class="reel-tab" type="button" data-reel="crm" style="--accent: var(--cyan)"><b>CRM</b><span>Registro interno de consultas.</span></button>
+          <button class="reel-tab" type="button" data-reel="ads" style="--accent: var(--blue)"><b>Anuncios</b><span>Tráfico pago medido.</span></button>
+          <button class="reel-tab" type="button" data-reel="apps" style="--accent: var(--acid-deep)"><b>Apps</b><span>Herramientas internas a medida.</span></button>
         </div>
 
         <div class="reel-stage">
           <div class="reel-top">
-            <span id="reelTitle">Web en vivo</span>
+            <span id="reelTitle">Web</span>
             <div class="reel-progress" aria-hidden="true"><span></span></div>
           </div>
 
           <article class="reel-scene active" data-reel-panel="web" style="--accent: var(--acid)">
             <div class="reel-copy">
               <div class="eyebrow">01 · Web</div>
-              <h3>Lectura instantánea.</h3>
+              <h3>Web</h3>
+              <p>La explicación pública del negocio: qué hace, para quién, qué incluye y cómo seguir la conversación. Una lectura guiada que responde sola las preguntas obvias.</p>
+              <ul class="reel-list">
+                <li>Arquitectura, textos, diseño y publicación.</li>
+                <li>Móvil como prioridad, no como adaptación.</li>
+                <li>Dominio, mail, WhatsApp y medición conectados.</li>
+              </ul>
             </div>
             <div class="video-card web-film">
               <div class="video-frame">
@@ -1856,7 +1808,13 @@
           <article class="reel-scene" data-reel-panel="crm" style="--accent: var(--cyan)">
             <div class="reel-copy">
               <div class="eyebrow">02 · CRM</div>
-              <h3>Pipeline avanzando.</h3>
+              <h3>CRM</h3>
+              <p>La memoria del negocio. Cada consulta queda registrada con quién, qué pidió, en qué estado está y cuándo volver a escribirle. Lo que vivía en cabezas, queda visible.</p>
+              <ul class="reel-list">
+                <li>Etapas: nuevo, conversación, propuesta, cierre.</li>
+                <li>Recordatorios para que nada quede sin respuesta.</li>
+                <li>Entrada única desde web, mensajería o mail.</li>
+              </ul>
             </div>
             <div class="video-card crm-film">
               <div class="video-frame">
@@ -1872,7 +1830,13 @@
           <article class="reel-scene" data-reel-panel="ads" style="--accent: var(--blue)">
             <div class="reel-copy">
               <div class="eyebrow">03 · Anuncios</div>
-              <h3>Campañas con feedback.</h3>
+              <h3>Anuncios</h3>
+              <p>Hipótesis con presupuesto. Meta y Google permiten llegar a personas con intención; el trabajo es plantear hipótesis, medirlas y dejar que el sistema aprenda qué mensaje funciona y a qué costo.</p>
+              <ul class="reel-list">
+                <li>Estrategia, públicos, presupuesto y creatividad.</li>
+                <li>Pixel, conversiones y atribución configurados.</li>
+                <li>Lectura semanal de costo y calidad del lead.</li>
+              </ul>
             </div>
             <div class="video-card ads-film">
               <div class="video-frame">
@@ -1885,7 +1849,13 @@
           <article class="reel-scene" data-reel-panel="apps" style="--accent: var(--acid-deep)">
             <div class="reel-copy">
               <div class="eyebrow">04 · Apps</div>
-              <h3>Procesos como herramienta.</h3>
+              <h3>Apps</h3>
+              <p>Herramientas a medida cuando lo que existe no resuelve. Paneles internos, cotizadores, reservas, calculadoras o automatizaciones que conectan partes del negocio que hoy viven sueltas.</p>
+              <ul class="reel-list">
+                <li>Problema definido antes de escribir código.</li>
+                <li>Primera versión simple, validada con uso real.</li>
+                <li>Mantenimiento incluido mientras esté en uso.</li>
+              </ul>
             </div>
             <div class="video-card apps-film">
               <div class="video-frame">
@@ -2389,21 +2359,6 @@
   addEventListener("scroll", updateScene, { passive: true });
   updateScene();
 
-  const serviceTabs = document.querySelectorAll(".cockpit-tab");
-  const servicePanels = document.querySelectorAll(".service-panel");
-  const screenTitle = document.getElementById("screenTitle");
-  serviceTabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      const service = tab.dataset.service;
-      serviceTabs.forEach((item) => {
-        item.classList.toggle("active", item === tab);
-        item.setAttribute("aria-selected", item === tab ? "true" : "false");
-      });
-      servicePanels.forEach((panel) => panel.classList.toggle("active", panel.dataset.panel === service));
-      screenTitle.textContent = tab.querySelector("b").textContent;
-    });
-  });
-
   const scanData = {
     clarity: {
       title: "Claridad de la oferta",
@@ -2462,7 +2417,7 @@
     tab.addEventListener("click", () => setReel(index));
   });
   setInterval(() => {
-    const reelBox = document.getElementById("showreel").getBoundingClientRect();
+    const reelBox = document.getElementById("servicios").getBoundingClientRect();
     if (reelBox.top < innerHeight && reelBox.bottom > 0) setReel(reelIndex + 1);
   }, 12000);
 
