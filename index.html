@@ -1237,76 +1237,87 @@
   }
   .circuit-svg .wire {
     fill: none;
-    stroke: rgba(122,169,255,.32);
-    stroke-width: 1.3;
+    stroke-width: 1.4;
+    stroke-linecap: round;
   }
-  .circuit-svg .wire.dim {
-    stroke: rgba(255,255,255,.12);
-    stroke-dasharray: 4 6;
-  }
-  .circuit-svg .pulse {
-    fill: var(--acid);
-    filter: drop-shadow(0 0 6px rgba(122,169,255,.9));
-  }
-  .circuit-svg .pulse.cyan { fill: var(--cyan); filter: drop-shadow(0 0 6px rgba(102,217,200,.9)); }
-  .circuit-svg .pulse.deep { fill: var(--acid-deep); filter: drop-shadow(0 0 6px rgba(79,127,222,.9)); }
+  .circuit-svg .wire.blue   { stroke: rgba(122,169,255,.55); }
+  .circuit-svg .wire.cyan   { stroke: rgba(102,217,200,.55); }
+  .circuit-svg .wire.coral  { stroke: rgba(240,138,107,.55); }
+  .circuit-svg .wire.deep   { stroke: rgba(79,127,222,.55); }
+  .circuit-svg .wire.dashed { stroke-dasharray: 4 7; opacity: .65; }
+  .circuit-svg .pulse { filter: drop-shadow(0 0 8px currentColor); }
+  .circuit-svg .pulse.blue  { fill: var(--acid);      color: var(--acid); }
+  .circuit-svg .pulse.cyan  { fill: var(--cyan);      color: var(--cyan); }
+  .circuit-svg .pulse.coral { fill: var(--coral);     color: var(--coral); }
+  .circuit-svg .pulse.deep  { fill: var(--acid-deep); color: var(--acid-deep); }
   .circuit-svg .junction {
     fill: var(--paper);
-    stroke: var(--acid);
     stroke-width: 1.4;
   }
+  .circuit-svg .junction.blue  { stroke: var(--acid); }
+  .circuit-svg .junction.cyan  { stroke: var(--cyan); }
+  .circuit-svg .junction.coral { stroke: var(--coral); }
+  .circuit-svg .junction.deep  { stroke: var(--acid-deep); }
 
   .station {
+    --c: var(--acid);
+    --c-soft: rgba(122,169,255,.14);
     position: absolute;
-    width: 220px;
+    width: 188px;
     transform: translate(-50%, -50%);
-    border: 1px solid var(--line-strong);
-    background: rgba(11,16,23,.92);
+    border: 1px solid var(--line);
+    background: rgba(11,16,23,.94);
     backdrop-filter: blur(8px);
-    padding: 14px 16px 16px;
+    padding: 14px 16px 14px 18px;
     display: grid;
-    gap: 6px;
-    box-shadow: 0 18px 60px rgba(0,0,0,.5);
-    transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+    grid-template-columns: auto 1fr;
+    gap: 4px 12px;
+    align-items: baseline;
+    box-shadow: 0 14px 36px rgba(0,0,0,.45);
+    transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .station::before {
+    content: "";
+    position: absolute;
+    left: -1px; top: -1px; bottom: -1px;
+    width: 3px;
+    background: var(--c);
+    box-shadow: 0 0 14px var(--c);
   }
   .station:hover {
-    border-color: var(--acid);
     transform: translate(-50%, -50%) translateY(-3px);
-    box-shadow: 0 24px 70px rgba(0,0,0,.55), 0 0 30px rgba(122,169,255,.25);
+    border-color: var(--c);
+    background: color-mix(in srgb, var(--c) 8%, rgba(11,16,23,.94));
+    box-shadow: 0 22px 60px rgba(0,0,0,.55), 0 0 26px var(--c-soft);
   }
   .station .step {
     font-family: "Space Grotesk", sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .14em;
-    color: var(--acid);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--c);
+    grid-row: 1 / span 2;
+    align-self: center;
   }
   .station h3 {
-    font-size: 16px;
-    line-height: 1.15;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.1;
     color: var(--ink);
     margin: 0;
   }
   .station p {
-    font-size: 12.5px;
-    line-height: 1.45;
+    font-size: 12px;
+    line-height: 1.4;
     color: var(--muted);
+    margin: 0;
+    grid-column: 2;
   }
-  .station .meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 6px;
-    margin-top: 4px;
-  }
-  .station .meta span {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    padding: 3px 6px;
-    border: 1px solid var(--line);
-    color: var(--muted);
-  }
+
+  .station.c-blue  { --c: var(--acid);      --c-soft: rgba(122,169,255,.18); }
+  .station.c-cyan  { --c: var(--cyan);      --c-soft: rgba(102,217,200,.18); }
+  .station.c-coral { --c: var(--coral);     --c-soft: rgba(240,138,107,.18); }
+  .station.c-deep  { --c: var(--acid-deep); --c-soft: rgba(79,127,222,.20); }
 
   /* node positions on the SVG canvas */
   .station.s-origen      { left: 13%;  top: 18%; }
@@ -1331,9 +1342,10 @@
     width: 10px; height: 10px; border-radius: 50%;
     box-shadow: 0 0 10px currentColor;
   }
-  .circuit-legend .dot.signal { background: var(--acid); color: var(--acid); }
-  .circuit-legend .dot.data   { background: var(--cyan); color: var(--cyan); }
-  .circuit-legend .dot.feed   { background: var(--acid-deep); color: var(--acid-deep); }
+  .circuit-legend .dot.public { background: var(--acid);      color: var(--acid); }
+  .circuit-legend .dot.auto   { background: var(--cyan);      color: var(--cyan); }
+  .circuit-legend .dot.human  { background: var(--coral);     color: var(--coral); }
+  .circuit-legend .dot.loop   { background: var(--acid-deep); color: var(--acid-deep); }
 
   /* ===== mobile fallback: vertical schematic ===== */
   .circuit-mobile {
@@ -1358,16 +1370,24 @@
     background: rgba(7,9,13,.6);
   }
   .circuit-mobile li:last-child { border-bottom: 1px solid var(--line); }
+  .circuit-mobile li {
+    --c: var(--acid);
+    border-left: 3px solid var(--c);
+  }
+  .circuit-mobile li.c-blue  { --c: var(--acid); }
+  .circuit-mobile li.c-cyan  { --c: var(--cyan); }
+  .circuit-mobile li.c-coral { --c: var(--coral); }
+  .circuit-mobile li.c-deep  { --c: var(--acid-deep); }
   .circuit-mobile li::before {
     content: counter(stationCount, decimal-leading-zero);
     counter-increment: stationCount;
     position: absolute;
     left: 16px; top: 18px;
     font-family: "Space Grotesk", sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--acid);
-    letter-spacing: .12em;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--c);
+    letter-spacing: .08em;
   }
   .circuit-mobile ol { counter-reset: stationCount; }
   .circuit-mobile li::after {
@@ -1375,7 +1395,7 @@
     position: absolute;
     left: 23px; bottom: -10px;
     width: 1px; height: 10px;
-    background: var(--acid);
+    background: var(--c);
     z-index: 2;
   }
   .circuit-mobile li:last-child::after { display: none; }
@@ -2082,177 +2102,122 @@
     <div class="wrap">
       <div class="circuit-head">
         <div>
-          <div class="eyebrow">Anatomía del sistema</div>
+          <div class="eyebrow">El recorrido</div>
           <h2>Qué pasa cuando alguien hace una pregunta.</h2>
         </div>
-        <p>Seguí el recorrido de una consulta desde que entra hasta que se transforma en aprendizaje para el próximo mes. Cada estación es una pieza real del sistema, no una metáfora.</p>
+        <p>Ocho estaciones. Cuatro etapas. Una sola consulta viajando por el sistema de principio a fin.</p>
       </div>
 
       <div class="circuit-stage" aria-label="Diagrama del recorrido de una consulta">
         <svg class="circuit-svg" viewBox="0 0 1200 760" preserveAspectRatio="none" aria-hidden="true">
           <defs>
-            <!-- Path 01: Origen -> Web (top) -->
             <path id="wire-01" d="M 156 137 C 290 137 360 137 600 137" />
-            <!-- Path 02: Web -> Consulta (top-right corner) -->
             <path id="wire-02" d="M 600 137 C 820 137 1032 170 1032 228" />
-            <!-- Path 03: Consulta -> Clasificación (right column down) -->
             <path id="wire-03" d="M 1032 228 C 1032 320 800 380 600 380" />
-            <!-- Path 04: Clasificación -> CRM (middle row) -->
             <path id="wire-04" d="M 600 380 C 460 380 320 380 168 380" />
-            <!-- Path 05: CRM -> Pipeline (left -> center bottom) -->
             <path id="wire-05" d="M 168 380 C 168 540 380 624 600 624" />
-            <!-- Path 06: Pipeline -> Equipo (bottom -> right bottom) -->
             <path id="wire-06" d="M 600 624 C 780 624 1032 580 1032 532" />
-            <!-- Path 07: Equipo -> CRM feedback (right bottom -> middle left, dashed) -->
             <path id="wire-07" d="M 1032 532 C 1032 470 720 430 168 430" />
-            <!-- Path 08: Pipeline -> Aprendizaje (bottom row) -->
             <path id="wire-08" d="M 600 624 C 460 624 320 624 168 624" />
-            <!-- Path 09: Aprendizaje -> Origen (feedback loop, far left, dashed) -->
             <path id="wire-09" d="M 168 624 C 60 624 60 137 156 137" />
           </defs>
 
-          <use href="#wire-01" class="wire" />
-          <use href="#wire-02" class="wire" />
-          <use href="#wire-03" class="wire" />
-          <use href="#wire-04" class="wire" />
-          <use href="#wire-05" class="wire" />
-          <use href="#wire-06" class="wire" />
-          <use href="#wire-07" class="wire dim" />
-          <use href="#wire-08" class="wire" />
-          <use href="#wire-09" class="wire dim" />
+          <use href="#wire-01" class="wire blue" />
+          <use href="#wire-02" class="wire blue" />
+          <use href="#wire-03" class="wire cyan" />
+          <use href="#wire-04" class="wire cyan" />
+          <use href="#wire-05" class="wire cyan" />
+          <use href="#wire-06" class="wire coral" />
+          <use href="#wire-07" class="wire cyan dashed" />
+          <use href="#wire-08" class="wire coral" />
+          <use href="#wire-09" class="wire deep dashed" />
 
-          <!-- Junction dots at each station center -->
-          <circle class="junction" cx="156" cy="137" r="4" />
-          <circle class="junction" cx="600" cy="137" r="4" />
-          <circle class="junction" cx="1032" cy="228" r="4" />
-          <circle class="junction" cx="600" cy="380" r="4" />
-          <circle class="junction" cx="168" cy="380" r="4" />
-          <circle class="junction" cx="1032" cy="532" r="4" />
-          <circle class="junction" cx="600" cy="624" r="4" />
-          <circle class="junction" cx="168" cy="624" r="4" />
+          <circle class="junction blue"  cx="156"  cy="137" r="4" />
+          <circle class="junction blue"  cx="600"  cy="137" r="4" />
+          <circle class="junction blue"  cx="1032" cy="228" r="4" />
+          <circle class="junction cyan"  cx="600"  cy="380" r="4" />
+          <circle class="junction cyan"  cx="168"  cy="380" r="4" />
+          <circle class="junction coral" cx="1032" cy="532" r="4" />
+          <circle class="junction coral" cx="600"  cy="624" r="4" />
+          <circle class="junction deep"  cx="168"  cy="624" r="4" />
 
-          <!-- Animated data packets traveling along the main flow -->
-          <circle class="pulse" r="5">
-            <animateMotion dur="14s" repeatCount="indefinite" rotate="auto">
-              <mpath href="#wire-01" />
-            </animateMotion>
-          </circle>
-          <circle class="pulse" r="5">
-            <animateMotion dur="14s" begin="-12s" repeatCount="indefinite" rotate="auto">
-              <mpath href="#wire-02" />
-            </animateMotion>
-          </circle>
-          <circle class="pulse" r="5">
-            <animateMotion dur="14s" begin="-10s" repeatCount="indefinite" rotate="auto">
-              <mpath href="#wire-03" />
-            </animateMotion>
-          </circle>
-          <circle class="pulse cyan" r="5">
-            <animateMotion dur="14s" begin="-8s" repeatCount="indefinite" rotate="auto">
-              <mpath href="#wire-04" />
-            </animateMotion>
-          </circle>
-          <circle class="pulse cyan" r="5">
-            <animateMotion dur="14s" begin="-6s" repeatCount="indefinite" rotate="auto">
-              <mpath href="#wire-05" />
-            </animateMotion>
-          </circle>
-          <circle class="pulse" r="5">
-            <animateMotion dur="14s" begin="-4s" repeatCount="indefinite" rotate="auto">
-              <mpath href="#wire-06" />
-            </animateMotion>
-          </circle>
-          <circle class="pulse cyan" r="4">
-            <animateMotion dur="9s" begin="-3s" repeatCount="indefinite" rotate="auto">
-              <mpath href="#wire-07" />
-            </animateMotion>
-          </circle>
-          <circle class="pulse" r="5">
-            <animateMotion dur="14s" begin="-2s" repeatCount="indefinite" rotate="auto">
-              <mpath href="#wire-08" />
-            </animateMotion>
-          </circle>
-          <!-- Feedback loop packet (slower, deeper blue) -->
-          <circle class="pulse deep" r="4">
-            <animateMotion dur="12s" repeatCount="indefinite" rotate="auto">
-              <mpath href="#wire-09" />
-            </animateMotion>
-          </circle>
+          <circle class="pulse blue"  r="5"><animateMotion dur="11s" repeatCount="indefinite" rotate="auto"><mpath href="#wire-01" /></animateMotion></circle>
+          <circle class="pulse blue"  r="5"><animateMotion dur="11s" begin="-9s"  repeatCount="indefinite" rotate="auto"><mpath href="#wire-02" /></animateMotion></circle>
+          <circle class="pulse cyan"  r="5"><animateMotion dur="11s" begin="-7s"  repeatCount="indefinite" rotate="auto"><mpath href="#wire-03" /></animateMotion></circle>
+          <circle class="pulse cyan"  r="5"><animateMotion dur="11s" begin="-5s"  repeatCount="indefinite" rotate="auto"><mpath href="#wire-04" /></animateMotion></circle>
+          <circle class="pulse cyan"  r="5"><animateMotion dur="11s" begin="-3s"  repeatCount="indefinite" rotate="auto"><mpath href="#wire-05" /></animateMotion></circle>
+          <circle class="pulse coral" r="5"><animateMotion dur="11s" begin="-1s"  repeatCount="indefinite" rotate="auto"><mpath href="#wire-06" /></animateMotion></circle>
+          <circle class="pulse coral" r="5"><animateMotion dur="11s" begin="-10s" repeatCount="indefinite" rotate="auto"><mpath href="#wire-08" /></animateMotion></circle>
+          <circle class="pulse cyan"  r="4"><animateMotion dur="9s"  begin="-2s"  repeatCount="indefinite" rotate="auto"><mpath href="#wire-07" /></animateMotion></circle>
+          <circle class="pulse deep"  r="4"><animateMotion dur="13s" repeatCount="indefinite" rotate="auto"><mpath href="#wire-09" /></animateMotion></circle>
         </svg>
 
-        <article class="station s-origen">
-          <span class="step">01 · Origen</span>
-          <h3>De dónde llega la persona.</h3>
-          <p>Anuncios de Meta y Google, búsquedas en Google, recomendación o tráfico directo. El sistema sabe exactamente por qué puerta entró cada visita.</p>
-          <div class="meta"><span>Meta</span><span>Google</span><span>SEO</span><span>Directo</span></div>
+        <article class="station s-origen c-blue">
+          <span class="step">01</span>
+          <h3>Origen</h3>
+          <p>De anuncios, búsquedas o recomendación.</p>
         </article>
 
-        <article class="station s-web">
-          <span class="step">02 · Web</span>
-          <h3>Aterriza y lee.</h3>
-          <p>La estructura responde las preguntas obvias en segundos. Si la persona quiere avanzar, tiene un camino claro: WhatsApp, formulario o llamada.</p>
-          <div class="meta"><span>Mobile-first</span><span>Pixel</span><span>Tracking</span></div>
+        <article class="station s-web c-blue">
+          <span class="step">02</span>
+          <h3>Web</h3>
+          <p>Lee, entiende y decide seguir.</p>
         </article>
 
-        <article class="station s-consulta">
-          <span class="step">03 · Consulta</span>
-          <h3>Hace una pregunta.</h3>
-          <p>Un mensaje entra al sistema con todo su contexto: qué buscó, qué anuncio vio, qué páginas miró, qué preguntó textualmente.</p>
-          <div class="meta"><span>WhatsApp</span><span>Formulario</span><span>Llamada</span></div>
+        <article class="station s-consulta c-blue">
+          <span class="step">03</span>
+          <h3>Consulta</h3>
+          <p>Pregunta por WhatsApp, form o teléfono.</p>
         </article>
 
-        <article class="station s-clasif">
-          <span class="step">04 · Clasificación</span>
-          <h3>El sistema la entiende.</h3>
-          <p>Detecta tipo de consulta, urgencia, fuente y si es un cliente nuevo o existente. Manda una primera respuesta y deriva al humano correcto.</p>
-          <div class="meta"><span>Auto-tag</span><span>Auto-reply</span><span>Routing</span></div>
+        <article class="station s-clasif c-cyan">
+          <span class="step">04</span>
+          <h3>Clasificación</h3>
+          <p>Tipo, urgencia y primera respuesta automática.</p>
         </article>
 
-        <article class="station s-crm">
-          <span class="step">05 · CRM</span>
-          <h3>Queda registrada.</h3>
-          <p>Cada conversación, mensaje, archivo y nota interna queda guardada con quién, cuándo, de dónde vino y qué hay que hacer ahora.</p>
-          <div class="meta"><span>Historial</span><span>Notas</span><span>Tareas</span></div>
+        <article class="station s-crm c-cyan">
+          <span class="step">05</span>
+          <h3>CRM</h3>
+          <p>Queda registrada con todo su contexto.</p>
         </article>
 
-        <article class="station s-equipo">
-          <span class="step">06 · Equipo</span>
-          <h3>Una persona toma la posta.</h3>
-          <p>Quien corresponde recibe el aviso con todo el contexto. Responde, agenda, manda propuesta. El CRM guarda cada paso sin que tenga que cargarlo a mano.</p>
-          <div class="meta"><span>Asignación</span><span>SLA</span><span>Recordatorios</span></div>
+        <article class="station s-equipo c-coral">
+          <span class="step">06</span>
+          <h3>Equipo</h3>
+          <p>La persona indicada toma la posta.</p>
         </article>
 
-        <article class="station s-pipeline">
-          <span class="step">07 · Pipeline</span>
-          <h3>Avanza por etapas.</h3>
-          <p>Nuevo, en conversación, propuesta, cierre o archivado. Visible para todo el equipo, con métricas de conversión y tiempo en cada etapa.</p>
-          <div class="meta"><span>Estados</span><span>Conversión</span><span>Tiempo</span></div>
+        <article class="station s-pipeline c-coral">
+          <span class="step">07</span>
+          <h3>Pipeline</h3>
+          <p>Avanza por etapas hasta cerrar.</p>
         </article>
 
-        <article class="station s-aprend">
-          <span class="step">08 · Aprendizaje</span>
-          <h3>El resultado vuelve al sistema.</h3>
-          <p>Lo que cerró y lo que no le dice a Meta y Google qué creatividad funciona, alimenta el reporte semanal y ajusta dónde se invierte el próximo mes.</p>
-          <div class="meta"><span>Atribución</span><span>Reporte</span><span>Próximo mes</span></div>
+        <article class="station s-aprend c-deep">
+          <span class="step">08</span>
+          <h3>Aprendizaje</h3>
+          <p>El resultado vuelve a anuncios y reporte.</p>
         </article>
       </div>
 
       <div class="circuit-legend" aria-hidden="true">
-        <span class="item"><span class="dot signal"></span>Flujo principal de la consulta</span>
-        <span class="item"><span class="dot data"></span>Datos del CRM al equipo</span>
-        <span class="item"><span class="dot feed"></span>Loop de aprendizaje hacia anuncios</span>
+        <span class="item"><span class="dot public"></span>Mundo público</span>
+        <span class="item"><span class="dot auto"></span>Sistema automatizado</span>
+        <span class="item"><span class="dot human"></span>Equipo humano</span>
+        <span class="item"><span class="dot loop"></span>Loop de aprendizaje</span>
       </div>
 
       <div class="circuit-mobile" aria-hidden="false">
         <ol>
-          <li><b>Origen</b><span>Llega desde anuncios, Google, recomendación o tráfico directo. El sistema sabe por qué puerta entró.</span></li>
-          <li><b>Web</b><span>Aterriza, lee, decide. Si quiere avanzar, tiene formulario o WhatsApp listos.</span></li>
-          <li><b>Consulta</b><span>Su pregunta entra con contexto: qué vio, qué buscó, qué preguntó textualmente.</span></li>
-          <li><b>Clasificación</b><span>El sistema detecta tipo, urgencia y fuente. Responde rápido y deriva al humano correcto.</span></li>
-          <li><b>CRM</b><span>Cada mensaje, archivo y nota queda guardado en una sola vista compartida.</span></li>
-          <li><b>Equipo</b><span>La persona indicada toma la posta con todo el historial a la vista.</span></li>
-          <li><b>Pipeline</b><span>Avanza por etapas con métricas reales de tiempo y conversión.</span></li>
-          <li><b>Aprendizaje</b><span>El resultado vuelve a anuncios, web y al reporte semanal del próximo mes.</span></li>
+          <li class="c-blue"><b>Origen</b><span>De anuncios, búsquedas o recomendación.</span></li>
+          <li class="c-blue"><b>Web</b><span>Lee, entiende y decide seguir.</span></li>
+          <li class="c-blue"><b>Consulta</b><span>Pregunta por WhatsApp, form o teléfono.</span></li>
+          <li class="c-cyan"><b>Clasificación</b><span>Tipo, urgencia y primera respuesta automática.</span></li>
+          <li class="c-cyan"><b>CRM</b><span>Queda registrada con todo su contexto.</span></li>
+          <li class="c-coral"><b>Equipo</b><span>La persona indicada toma la posta.</span></li>
+          <li class="c-coral"><b>Pipeline</b><span>Avanza por etapas hasta cerrar.</span></li>
+          <li class="c-deep"><b>Aprendizaje</b><span>El resultado vuelve a anuncios y reporte.</span></li>
         </ol>
       </div>
     </div>
