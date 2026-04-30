@@ -1168,7 +1168,221 @@
   .vis-ab .v i:nth-child(3) { width: 40%; }
   .vis-ab .v.win i:nth-child(3) { width: 95%; }
 
-  .builder {
+  /* ============ Circuito / system journey ============ */
+  .circuit {
+    padding: 130px 0 140px;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(122,169,255,.10), transparent 26rem),
+      var(--paper);
+  }
+  .circuit::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 56px 56px;
+    pointer-events: none;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+  }
+  .circuit-head {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 38px;
+    align-items: end;
+    margin-bottom: 56px;
+  }
+  .circuit-head h2 { max-width: 880px; }
+  .circuit-head p { max-width: 480px; }
+
+  .circuit-stage {
+    position: relative;
+    aspect-ratio: 1200 / 760;
+    width: 100%;
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(circle at 50% 50%, rgba(122,169,255,.06), transparent 60%),
+      rgba(7,9,13,.55);
+    box-shadow: var(--shadow);
+  }
+  .circuit-stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 38px 38px;
+    pointer-events: none;
+    opacity: .7;
+  }
+  .circuit-stage::after {
+    content: "ROMANN · Live circuit";
+    position: absolute;
+    top: 16px; right: 18px;
+    color: var(--dim);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+  .circuit-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .circuit-svg .wire {
+    fill: none;
+    stroke: rgba(122,169,255,.32);
+    stroke-width: 1.3;
+  }
+  .circuit-svg .wire.dim {
+    stroke: rgba(255,255,255,.12);
+    stroke-dasharray: 4 6;
+  }
+  .circuit-svg .pulse {
+    fill: var(--acid);
+    filter: drop-shadow(0 0 6px rgba(122,169,255,.9));
+  }
+  .circuit-svg .pulse.cyan { fill: var(--cyan); filter: drop-shadow(0 0 6px rgba(102,217,200,.9)); }
+  .circuit-svg .pulse.deep { fill: var(--acid-deep); filter: drop-shadow(0 0 6px rgba(79,127,222,.9)); }
+  .circuit-svg .junction {
+    fill: var(--paper);
+    stroke: var(--acid);
+    stroke-width: 1.4;
+  }
+
+  .station {
+    position: absolute;
+    width: 220px;
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--line-strong);
+    background: rgba(11,16,23,.92);
+    backdrop-filter: blur(8px);
+    padding: 14px 16px 16px;
+    display: grid;
+    gap: 6px;
+    box-shadow: 0 18px 60px rgba(0,0,0,.5);
+    transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .station:hover {
+    border-color: var(--acid);
+    transform: translate(-50%, -50%) translateY(-3px);
+    box-shadow: 0 24px 70px rgba(0,0,0,.55), 0 0 30px rgba(122,169,255,.25);
+  }
+  .station .step {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    color: var(--acid);
+  }
+  .station h3 {
+    font-size: 16px;
+    line-height: 1.15;
+    color: var(--ink);
+    margin: 0;
+  }
+  .station p {
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+  .station .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 6px;
+    margin-top: 4px;
+  }
+  .station .meta span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 3px 6px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+  }
+
+  /* node positions on the SVG canvas */
+  .station.s-origen      { left: 13%;  top: 18%; }
+  .station.s-web         { left: 50%;  top: 18%; }
+  .station.s-consulta    { left: 86%;  top: 30%; }
+  .station.s-clasif      { left: 50%;  top: 50%; }
+  .station.s-crm         { left: 14%;  top: 50%; }
+  .station.s-equipo      { left: 86%;  top: 70%; }
+  .station.s-pipeline    { left: 50%;  top: 82%; }
+  .station.s-aprend      { left: 14%;  top: 82%; }
+
+  .circuit-legend {
+    margin-top: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .circuit-legend .item { display: inline-flex; align-items: center; gap: 8px; }
+  .circuit-legend .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    box-shadow: 0 0 10px currentColor;
+  }
+  .circuit-legend .dot.signal { background: var(--acid); color: var(--acid); }
+  .circuit-legend .dot.data   { background: var(--cyan); color: var(--cyan); }
+  .circuit-legend .dot.feed   { background: var(--acid-deep); color: var(--acid-deep); }
+
+  /* ===== mobile fallback: vertical schematic ===== */
+  .circuit-mobile {
+    display: none;
+    margin-top: 40px;
+    border: 1px solid var(--line);
+    background: rgba(11,16,23,.55);
+    padding: 18px;
+  }
+  .circuit-mobile ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+  .circuit-mobile li {
+    position: relative;
+    padding: 18px 18px 18px 56px;
+    border: 1px solid var(--line);
+    border-bottom: 0;
+    background: rgba(7,9,13,.6);
+  }
+  .circuit-mobile li:last-child { border-bottom: 1px solid var(--line); }
+  .circuit-mobile li::before {
+    content: counter(stationCount, decimal-leading-zero);
+    counter-increment: stationCount;
+    position: absolute;
+    left: 16px; top: 18px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--acid);
+    letter-spacing: .12em;
+  }
+  .circuit-mobile ol { counter-reset: stationCount; }
+  .circuit-mobile li::after {
+    content: "";
+    position: absolute;
+    left: 23px; bottom: -10px;
+    width: 1px; height: 10px;
+    background: var(--acid);
+    z-index: 2;
+  }
+  .circuit-mobile li:last-child::after { display: none; }
+  .circuit-mobile li b { display: block; color: var(--ink); font-size: 15px; margin-bottom: 4px; font-weight: 600; }
+  .circuit-mobile li span { color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+
     min-height: auto;
     padding: 110px 0;
     background:
@@ -1176,8 +1390,7 @@
       radial-gradient(circle at 14% 86%, rgba(102,217,200,.08), transparent 24rem),
       var(--paper);
     color: var(--ink);
-  }
-  .builder p, .builder .eyebrow { color: var(--muted); }
+  }  .builder p, .builder .eyebrow { color: var(--muted); }
   .builder .eyebrow { color: var(--acid); }
   .builder .eyebrow::before { background: currentColor; }
   .builder h2 { color: var(--ink); }
@@ -1341,8 +1554,10 @@
   @media (max-width: 980px) {
     .nav { grid-template-columns: 1fr auto; }
     .nav-links { display: none; }
-    .hero-layout, .trust-grid, .diagnostic-body, .stage-grid, .lab-head, .service-cockpit, .reel-head, .reel-shell, .reel-scene, .builder-grid, .contact-grid, .cap-head { grid-template-columns: 1fr; }
+    .hero-layout, .trust-grid, .diagnostic-body, .stage-grid, .lab-head, .service-cockpit, .reel-head, .reel-shell, .reel-scene, .builder-grid, .contact-grid, .cap-head, .circuit-head { grid-template-columns: 1fr; }
     .cap-grid { grid-template-columns: repeat(2, 1fr); }
+    .circuit-stage { display: none; }
+    .circuit-mobile { display: block; }
     .signal-board { min-height: 560px; }
     .live-map { min-height: 506px; }
     .trust-copy, .diagnostic { min-height: auto; }
@@ -1414,6 +1629,7 @@
     .cap-grid { grid-template-columns: 1fr; }
     .capabilities { padding: 80px 0; }
     .cap-card { min-height: 320px; grid-template-rows: 110px auto auto; }
+    .circuit { padding: 80px 0; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1438,6 +1654,7 @@
     <a href="#sistema">Sistema</a>
     <a href="#servicios">Servicios</a>
     <a href="#capacidades">Capacidades</a>
+    <a href="#circuito">Circuito</a>
     <a href="#paquete">Paquete</a>
     <a href="#contacto">Contacto</a>
   </div>
@@ -1857,6 +2074,186 @@
           <h3>Experimentos continuos sobre lo que ya funciona.</h3>
           <p>Probamos titulares, ofertas, creatividades y secciones de la web en paralelo. La versión que gana queda y la que pierde se descarta. El sistema mejora solo, sin esperar a una "próxima versión".</p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="circuit" id="circuito">
+    <div class="wrap">
+      <div class="circuit-head">
+        <div>
+          <div class="eyebrow">Anatomía del sistema</div>
+          <h2>Qué pasa cuando alguien hace una pregunta.</h2>
+        </div>
+        <p>Seguí el recorrido de una consulta desde que entra hasta que se transforma en aprendizaje para el próximo mes. Cada estación es una pieza real del sistema, no una metáfora.</p>
+      </div>
+
+      <div class="circuit-stage" aria-label="Diagrama del recorrido de una consulta">
+        <svg class="circuit-svg" viewBox="0 0 1200 760" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <!-- Path 01: Origen -> Web (top) -->
+            <path id="wire-01" d="M 156 137 C 290 137 360 137 600 137" />
+            <!-- Path 02: Web -> Consulta (top-right corner) -->
+            <path id="wire-02" d="M 600 137 C 820 137 1032 170 1032 228" />
+            <!-- Path 03: Consulta -> Clasificación (right column down) -->
+            <path id="wire-03" d="M 1032 228 C 1032 320 800 380 600 380" />
+            <!-- Path 04: Clasificación -> CRM (middle row) -->
+            <path id="wire-04" d="M 600 380 C 460 380 320 380 168 380" />
+            <!-- Path 05: CRM -> Pipeline (left -> center bottom) -->
+            <path id="wire-05" d="M 168 380 C 168 540 380 624 600 624" />
+            <!-- Path 06: Pipeline -> Equipo (bottom -> right bottom) -->
+            <path id="wire-06" d="M 600 624 C 780 624 1032 580 1032 532" />
+            <!-- Path 07: Equipo -> CRM feedback (right bottom -> middle left, dashed) -->
+            <path id="wire-07" d="M 1032 532 C 1032 470 720 430 168 430" />
+            <!-- Path 08: Pipeline -> Aprendizaje (bottom row) -->
+            <path id="wire-08" d="M 600 624 C 460 624 320 624 168 624" />
+            <!-- Path 09: Aprendizaje -> Origen (feedback loop, far left, dashed) -->
+            <path id="wire-09" d="M 168 624 C 60 624 60 137 156 137" />
+          </defs>
+
+          <use href="#wire-01" class="wire" />
+          <use href="#wire-02" class="wire" />
+          <use href="#wire-03" class="wire" />
+          <use href="#wire-04" class="wire" />
+          <use href="#wire-05" class="wire" />
+          <use href="#wire-06" class="wire" />
+          <use href="#wire-07" class="wire dim" />
+          <use href="#wire-08" class="wire" />
+          <use href="#wire-09" class="wire dim" />
+
+          <!-- Junction dots at each station center -->
+          <circle class="junction" cx="156" cy="137" r="4" />
+          <circle class="junction" cx="600" cy="137" r="4" />
+          <circle class="junction" cx="1032" cy="228" r="4" />
+          <circle class="junction" cx="600" cy="380" r="4" />
+          <circle class="junction" cx="168" cy="380" r="4" />
+          <circle class="junction" cx="1032" cy="532" r="4" />
+          <circle class="junction" cx="600" cy="624" r="4" />
+          <circle class="junction" cx="168" cy="624" r="4" />
+
+          <!-- Animated data packets traveling along the main flow -->
+          <circle class="pulse" r="5">
+            <animateMotion dur="14s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#wire-01" />
+            </animateMotion>
+          </circle>
+          <circle class="pulse" r="5">
+            <animateMotion dur="14s" begin="-12s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#wire-02" />
+            </animateMotion>
+          </circle>
+          <circle class="pulse" r="5">
+            <animateMotion dur="14s" begin="-10s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#wire-03" />
+            </animateMotion>
+          </circle>
+          <circle class="pulse cyan" r="5">
+            <animateMotion dur="14s" begin="-8s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#wire-04" />
+            </animateMotion>
+          </circle>
+          <circle class="pulse cyan" r="5">
+            <animateMotion dur="14s" begin="-6s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#wire-05" />
+            </animateMotion>
+          </circle>
+          <circle class="pulse" r="5">
+            <animateMotion dur="14s" begin="-4s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#wire-06" />
+            </animateMotion>
+          </circle>
+          <circle class="pulse cyan" r="4">
+            <animateMotion dur="9s" begin="-3s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#wire-07" />
+            </animateMotion>
+          </circle>
+          <circle class="pulse" r="5">
+            <animateMotion dur="14s" begin="-2s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#wire-08" />
+            </animateMotion>
+          </circle>
+          <!-- Feedback loop packet (slower, deeper blue) -->
+          <circle class="pulse deep" r="4">
+            <animateMotion dur="12s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#wire-09" />
+            </animateMotion>
+          </circle>
+        </svg>
+
+        <article class="station s-origen">
+          <span class="step">01 · Origen</span>
+          <h3>De dónde llega la persona.</h3>
+          <p>Anuncios de Meta y Google, búsquedas en Google, recomendación o tráfico directo. El sistema sabe exactamente por qué puerta entró cada visita.</p>
+          <div class="meta"><span>Meta</span><span>Google</span><span>SEO</span><span>Directo</span></div>
+        </article>
+
+        <article class="station s-web">
+          <span class="step">02 · Web</span>
+          <h3>Aterriza y lee.</h3>
+          <p>La estructura responde las preguntas obvias en segundos. Si la persona quiere avanzar, tiene un camino claro: WhatsApp, formulario o llamada.</p>
+          <div class="meta"><span>Mobile-first</span><span>Pixel</span><span>Tracking</span></div>
+        </article>
+
+        <article class="station s-consulta">
+          <span class="step">03 · Consulta</span>
+          <h3>Hace una pregunta.</h3>
+          <p>Un mensaje entra al sistema con todo su contexto: qué buscó, qué anuncio vio, qué páginas miró, qué preguntó textualmente.</p>
+          <div class="meta"><span>WhatsApp</span><span>Formulario</span><span>Llamada</span></div>
+        </article>
+
+        <article class="station s-clasif">
+          <span class="step">04 · Clasificación</span>
+          <h3>El sistema la entiende.</h3>
+          <p>Detecta tipo de consulta, urgencia, fuente y si es un cliente nuevo o existente. Manda una primera respuesta y deriva al humano correcto.</p>
+          <div class="meta"><span>Auto-tag</span><span>Auto-reply</span><span>Routing</span></div>
+        </article>
+
+        <article class="station s-crm">
+          <span class="step">05 · CRM</span>
+          <h3>Queda registrada.</h3>
+          <p>Cada conversación, mensaje, archivo y nota interna queda guardada con quién, cuándo, de dónde vino y qué hay que hacer ahora.</p>
+          <div class="meta"><span>Historial</span><span>Notas</span><span>Tareas</span></div>
+        </article>
+
+        <article class="station s-equipo">
+          <span class="step">06 · Equipo</span>
+          <h3>Una persona toma la posta.</h3>
+          <p>Quien corresponde recibe el aviso con todo el contexto. Responde, agenda, manda propuesta. El CRM guarda cada paso sin que tenga que cargarlo a mano.</p>
+          <div class="meta"><span>Asignación</span><span>SLA</span><span>Recordatorios</span></div>
+        </article>
+
+        <article class="station s-pipeline">
+          <span class="step">07 · Pipeline</span>
+          <h3>Avanza por etapas.</h3>
+          <p>Nuevo, en conversación, propuesta, cierre o archivado. Visible para todo el equipo, con métricas de conversión y tiempo en cada etapa.</p>
+          <div class="meta"><span>Estados</span><span>Conversión</span><span>Tiempo</span></div>
+        </article>
+
+        <article class="station s-aprend">
+          <span class="step">08 · Aprendizaje</span>
+          <h3>El resultado vuelve al sistema.</h3>
+          <p>Lo que cerró y lo que no le dice a Meta y Google qué creatividad funciona, alimenta el reporte semanal y ajusta dónde se invierte el próximo mes.</p>
+          <div class="meta"><span>Atribución</span><span>Reporte</span><span>Próximo mes</span></div>
+        </article>
+      </div>
+
+      <div class="circuit-legend" aria-hidden="true">
+        <span class="item"><span class="dot signal"></span>Flujo principal de la consulta</span>
+        <span class="item"><span class="dot data"></span>Datos del CRM al equipo</span>
+        <span class="item"><span class="dot feed"></span>Loop de aprendizaje hacia anuncios</span>
+      </div>
+
+      <div class="circuit-mobile" aria-hidden="false">
+        <ol>
+          <li><b>Origen</b><span>Llega desde anuncios, Google, recomendación o tráfico directo. El sistema sabe por qué puerta entró.</span></li>
+          <li><b>Web</b><span>Aterriza, lee, decide. Si quiere avanzar, tiene formulario o WhatsApp listos.</span></li>
+          <li><b>Consulta</b><span>Su pregunta entra con contexto: qué vio, qué buscó, qué preguntó textualmente.</span></li>
+          <li><b>Clasificación</b><span>El sistema detecta tipo, urgencia y fuente. Responde rápido y deriva al humano correcto.</span></li>
+          <li><b>CRM</b><span>Cada mensaje, archivo y nota queda guardado en una sola vista compartida.</span></li>
+          <li><b>Equipo</b><span>La persona indicada toma la posta con todo el historial a la vista.</span></li>
+          <li><b>Pipeline</b><span>Avanza por etapas con métricas reales de tiempo y conversión.</span></li>
+          <li><b>Aprendizaje</b><span>El resultado vuelve a anuncios, web y al reporte semanal del próximo mes.</span></li>
+        </ol>
       </div>
     </div>
   </section>
