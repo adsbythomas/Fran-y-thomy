@@ -173,7 +173,7 @@
   .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 
   .signal-board {
-    min-height: 640px;
+    min-height: 520px;
     border: 1px solid var(--line);
     background:
       linear-gradient(120deg, rgba(122,169,255,.10), transparent 34%),
@@ -215,7 +215,7 @@
   .lights i:nth-child(3) { background: rgba(255,255,255,.35); }
   .live-map {
     height: calc(100% - 54px);
-    min-height: 586px;
+    min-height: 466px;
     position: relative;
     cursor: crosshair;
   }
@@ -247,37 +247,27 @@
   @keyframes rotate { to { transform: translate(-50%, -50%) rotate(calc(var(--r) + 360deg)); } }
   .module {
     position: absolute;
-    width: 142px;
-    min-height: 118px;
-    display: grid;
-    align-content: space-between;
-    gap: 13px;
-    padding: 14px;
+    width: 124px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
     border: 1px solid var(--line-strong);
-    background: rgba(7,9,13,.84);
+    background: rgba(7,9,13,.88);
     box-shadow: 0 18px 50px rgba(0,0,0,.35);
   }
-  .module b { font-size: 16px; line-height: 1.05; }
-  .module span { color: var(--muted); font-size: 12px; line-height: 1.25; }
-  .module.web { top: 12%; left: 11%; border-color: rgba(122,169,255,.7); }
-  .module.crm { top: 20%; right: 9%; border-color: rgba(102,217,200,.6); }
-  .module.ads { left: 8%; bottom: 16%; border-color: rgba(240,138,107,.55); }
-  .module.apps { right: 13%; bottom: 10%; border-color: rgba(138,165,255,.6); }
-  .drag-chip {
-    position: absolute;
-    left: 50%; bottom: 26px;
-    transform: translateX(-50%);
-    width: min(420px, calc(100% - 36px));
-    border: 1px solid var(--line);
-    background: rgba(7,9,13,.74);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 14px;
-    align-items: center;
-    padding: 14px 14px 14px 16px;
+  .module b { font-size: 15px; line-height: 1; font-weight: 600; }
+  .module::before {
+    content: "";
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--c, var(--acid));
+    box-shadow: 0 0 8px var(--c, var(--acid));
+    flex-shrink: 0;
   }
-  .drag-chip strong { display: block; font-size: 14px; }
-  .drag-chip span { color: var(--muted); font-size: 12px; }
+  .module.web  { --c: var(--acid);      top: 14%; left: 9%;  border-color: rgba(122,169,255,.55); }
+  .module.crm  { --c: var(--cyan);      top: 20%; right: 8%; border-color: rgba(102,217,200,.5); }
+  .module.ads  { --c: var(--coral);     bottom: 18%; left: 7%;  border-color: rgba(240,138,107,.45); }
+  .module.apps { --c: var(--acid-deep); bottom: 12%; right: 11%; border-color: rgba(138,165,255,.5); }
   .pulse-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--acid); box-shadow: 0 0 0 0 rgba(122,169,255,.55); animation: pulse 1.8s infinite; }
   @keyframes pulse { 70% { box-shadow: 0 0 0 14px rgba(122,169,255,0); } 100% { box-shadow: 0 0 0 0 rgba(122,169,255,0); } }
 
@@ -288,23 +278,33 @@
     background: transparent;
     color: var(--muted);
   }
-  .ticker span { color: var(--muted); }
-  .ticker span em { color: var(--acid); font-style: normal; padding: 0 14px; opacity: .6; }
   .ticker-track {
     display: flex;
     width: max-content;
-    animation: ticker 28s linear infinite;
+    will-change: transform;
+    animation: ticker 50s linear infinite;
   }
-  .ticker span {
+  .ticker-track span {
     padding: 18px 0;
     white-space: nowrap;
+    flex-shrink: 0;
     font-weight: 600;
     font-size: clamp(13px, 1.4vw, 16px);
     letter-spacing: .12em;
     text-transform: uppercase;
     font-family: "Space Grotesk", sans-serif;
+    color: var(--muted);
   }
-  @keyframes ticker { to { transform: translateX(-50%); } }
+  .ticker-track span em {
+    color: var(--acid);
+    font-style: normal;
+    padding: 0 18px;
+    opacity: .55;
+  }
+  @keyframes ticker {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+  }
 
   .trust-layer {
     padding: 92px 0 106px;
@@ -373,23 +373,31 @@
   }
   .pain-buttons { display: grid; gap: 10px; align-content: start; }
   .pain {
-    min-height: 76px;
+    min-height: 60px;
     border: 1px solid var(--line);
-    background: rgba(255,255,255,.045);
+    background: rgba(255,255,255,.025);
     text-align: left;
-    padding: 14px;
+    padding: 14px 16px;
     cursor: pointer;
     display: grid;
-    gap: 5px;
-    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    align-items: center;
+    color: var(--ink);
+    transition: background .2s ease, border-color .2s ease;
   }
   .pain:hover, .pain.active {
-    transform: translateX(6px);
     border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
   }
-  .pain b { font-size: 16px; }
-  .pain span { color: var(--muted); font-size: 13px; line-height: 1.3; }
+  .pain .num {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    color: var(--accent);
+  }
+  .pain b { font-size: 15px; font-weight: 600; }
   .scanner {
     border: 1px solid var(--line);
     background:
@@ -593,33 +601,33 @@
   .lab-head p { max-width: 530px; }
   .service-cockpit {
     display: grid;
-    grid-template-columns: 360px 1fr;
-    gap: 16px;
+    grid-template-columns: 300px 1fr;
+    gap: 14px;
   }
   .cockpit-menu {
     display: grid;
     gap: 10px;
   }
   .cockpit-tab {
-    min-height: 106px;
-    padding: 16px;
+    min-height: 76px;
+    padding: 14px 16px;
     text-align: left;
     border: 1px solid var(--line);
-    background: rgba(255,255,255,.045);
+    background: rgba(255,255,255,.03);
     cursor: pointer;
     display: grid;
-    gap: 8px;
-    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    gap: 4px;
+    align-content: center;
+    transition: border-color .2s ease, background .2s ease;
   }
   .cockpit-tab:hover, .cockpit-tab.active {
-    transform: translateX(8px);
     border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
   }
-  .cockpit-tab b { font-size: 21px; }
-  .cockpit-tab span { color: var(--muted); font-size: 14px; line-height: 1.35; }
+  .cockpit-tab b { font-size: 17px; font-weight: 600; }
+  .cockpit-tab span { color: var(--muted); font-size: 13px; line-height: 1.4; }
   .cockpit-screen {
-    min-height: 650px;
+    min-height: 480px;
     border: 1px solid var(--line);
     background: rgba(11,16,23,.82);
     box-shadow: var(--shadow);
@@ -1608,9 +1616,8 @@
     .orbit.one { width: 230px; height: 230px; }
     .orbit.two { width: 310px; height: 310px; }
     .orbit.three { width: 410px; height: 410px; }
-    .module { width: 108px; min-height: 92px; padding: 10px; }
+    .module { width: 110px; padding: 10px 12px; }
     .module b { font-size: 13px; }
-    .module span { display: none; }
     .trust-layer { padding: 70px 0; }
     .trust-copy { padding: 18px; }
     .proof-stack { grid-template-columns: 1fr; }
@@ -1671,10 +1678,10 @@
     <span>Romann</span>
   </a>
   <div class="nav-links">
+    <a href="#servicios">Glosario</a>
     <a href="#sistema">Sistema</a>
-    <a href="#servicios">Servicios</a>
+    <a href="#circuito">Recorrido</a>
     <a href="#capacidades">Capacidades</a>
-    <a href="#circuito">Circuito</a>
     <a href="#paquete">Paquete</a>
     <a href="#contacto">Contacto</a>
   </div>
@@ -1708,15 +1715,11 @@
           <div class="orbit one"></div>
           <div class="orbit two"></div>
           <div class="orbit three"></div>
-          <div class="module web"><b>Web</b><span>Cómo te encuentran y entienden.</span></div>
-          <div class="module crm"><b>CRM</b><span>Dónde quedan registradas las consultas.</span></div>
-          <div class="module ads"><b>Ads</b><span>Por dónde llega tráfico nuevo.</span></div>
-          <div class="module apps"><b>Apps</b><span>Procesos internos hechos a medida.</span></div>
+          <div class="module web"><b>Web</b></div>
+          <div class="module crm"><b>CRM</b></div>
+          <div class="module ads"><b>Anuncios</b></div>
+          <div class="module apps"><b>Apps</b></div>
           <div class="center-core">R</div>
-          <div class="drag-chip">
-            <div><strong>Cuatro piezas, una sola fuente de verdad.</strong><span>Lo que pasa en una se nota en las demás.</span></div>
-            <i class="pulse-dot"></i>
-          </div>
         </div>
       </aside>
     </div>
@@ -1724,164 +1727,66 @@
 
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
-      <span>Web</span><span><em>·</em></span><span>CRM</span><span><em>·</em></span><span>Anuncios</span><span><em>·</em></span><span>Automatizaciones</span><span><em>·</em></span><span>Aplicaciones</span><span><em>·</em></span><span>Identidad visual</span><span><em>·</em></span><span>Reportes</span><span><em>·</em></span><span>Soporte continuo</span><span><em>·</em></span>
-      <span>Web</span><span><em>·</em></span><span>CRM</span><span><em>·</em></span><span>Anuncios</span><span><em>·</em></span><span>Automatizaciones</span><span><em>·</em></span><span>Aplicaciones</span><span><em>·</em></span><span>Identidad visual</span><span><em>·</em></span><span>Reportes</span><span><em>·</em></span><span>Soporte continuo</span><span><em>·</em></span>
+      <span>Diagnóstico</span><span><em>·</em></span><span>Estrategia</span><span><em>·</em></span><span>Web</span><span><em>·</em></span><span>CRM</span><span><em>·</em></span><span>Anuncios</span><span><em>·</em></span><span>Automatizaciones</span><span><em>·</em></span><span>Aplicaciones</span><span><em>·</em></span><span>Integraciones</span><span><em>·</em></span><span>Identidad visual</span><span><em>·</em></span><span>SEO técnico</span><span><em>·</em></span><span>Email</span><span><em>·</em></span><span>A/B testing</span><span><em>·</em></span><span>Tablero único</span><span><em>·</em></span><span>Reportes</span><span><em>·</em></span><span>Mantenimiento</span><span><em>·</em></span><span>Soporte continuo</span><span><em>·</em></span>
+      <span>Diagnóstico</span><span><em>·</em></span><span>Estrategia</span><span><em>·</em></span><span>Web</span><span><em>·</em></span><span>CRM</span><span><em>·</em></span><span>Anuncios</span><span><em>·</em></span><span>Automatizaciones</span><span><em>·</em></span><span>Aplicaciones</span><span><em>·</em></span><span>Integraciones</span><span><em>·</em></span><span>Identidad visual</span><span><em>·</em></span><span>SEO técnico</span><span><em>·</em></span><span>Email</span><span><em>·</em></span><span>A/B testing</span><span><em>·</em></span><span>Tablero único</span><span><em>·</em></span><span>Reportes</span><span><em>·</em></span><span>Mantenimiento</span><span><em>·</em></span><span>Soporte continuo</span><span><em>·</em></span>
     </div>
   </div>
-
-  <section class="trust-layer" id="confianza">
-    <div class="wrap trust-grid">
-      <div class="trust-copy">
-        <div>
-          <div class="eyebrow">Cómo arrancamos</div>
-          <h2>Antes de proponer, entendemos.</h2>
-        </div>
-        <p class="lead">Miramos cómo está armado el negocio: qué se vende, a quién, cómo entran las consultas y qué pasa después. Lo que decide qué construir es ese mapa, no una plantilla.</p>
-        <div class="proof-stack" aria-label="Etapas del trabajo">
-          <div class="proof"><b>01</b><span>Diagnóstico de oferta, cliente y proceso comercial actual.</span></div>
-          <div class="proof"><b>02</b><span>Plan visible con prioridades y forma de medir cada decisión.</span></div>
-          <div class="proof"><b>03</b><span>Operación mensual continua, no entregables sueltos.</span></div>
-        </div>
-      </div>
-
-      <div class="diagnostic">
-        <div class="diagnostic-top">
-          <span>ROMANN / DIAGNOSTIC SCANNER</span>
-          <span id="scanScore">EJE 01 / CLARIDAD</span>
-        </div>
-        <div class="diagnostic-body">
-          <div class="pain-buttons" aria-label="Áreas que revisamos">
-            <button class="pain active" type="button" data-pain="clarity" style="--accent: var(--acid)"><b>Claridad de la oferta</b><span>Cómo se explica lo que hace el negocio en pocas palabras.</span></button>
-            <button class="pain" type="button" data-pain="followup" style="--accent: var(--cyan)"><b>Manejo de consultas</b><span>Dónde quedan las conversaciones, quién responde y cuándo.</span></button>
-            <button class="pain" type="button" data-pain="traffic" style="--accent: var(--blue)"><b>Origen del tráfico</b><span>De dónde vienen las personas que hoy llegan al negocio.</span></button>
-            <button class="pain" type="button" data-pain="process" style="--accent: var(--acid-deep)"><b>Procesos internos</b><span>Tareas repetitivas, cuellos de botella y datos sueltos.</span></button>
-          </div>
-          <div class="scanner" id="scanner">
-            <div class="scanner-output">
-              <b id="scanTitle">Claridad de la oferta</b>
-              <span id="scanText">Revisamos cómo está descripta la propuesta hoy y la traducimos a una versión que se entienda en pocos segundos: qué hace, para quién, qué incluye y cuál es el próximo paso natural.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sticky-scene" id="sistema">
-    <div class="sticky-stage">
-      <div class="wrap stage-grid">
-        <div class="stage-copy">
-          <div class="eyebrow">El sistema en cuatro pasos</div>
-          <h2 id="stageHeadline">Primero entendemos el negocio.</h2>
-          <p class="lead" id="stageText">Oferta, cliente, precio, margen, proceso de venta y herramientas actuales. Sin ese mapa, cualquier decisión técnica es solo decoración.</p>
-          <div class="steps" aria-label="Progreso de narrativa">
-            <div class="step-dot active"><span></span></div>
-            <div class="step-dot"><span></span></div>
-            <div class="step-dot"><span></span></div>
-            <div class="step-dot"><span></span></div>
-          </div>
-        </div>
-        <div class="stage-frame">
-          <article class="stage-slide s1 active">
-            <div class="stage-label"><span>01 · Diagnóstico</span><span>negocio antes que diseño</span></div>
-            <div class="stage-visual">
-              <div class="story-card a"><b>Qué se vende</b><span>Traducimos la oferta a una explicación clara y verificable.</span></div>
-              <div class="story-card b"><b>A quién</b><span>Definimos cliente ideal, contexto y objeciones reales.</span></div>
-              <div class="story-card c"><b>Cómo se compra hoy</b><span>Mapeamos el camino actual, sus fugas y sus tiempos.</span></div>
-            </div>
-          </article>
-          <article class="stage-slide s2">
-            <div class="stage-label"><span>02 · Medición</span><span>cada decisión deja un dato</span></div>
-            <div class="stage-visual">
-              <div class="metric m1"><span><strong>30</strong>días para leer señales</span></div>
-              <div class="metric m2"><span><strong>4</strong>áreas conectadas</span></div>
-              <div class="metric m3"><span><strong>1</strong>tablero único</span></div>
-            </div>
-          </article>
-          <article class="stage-slide s3">
-            <div class="stage-label"><span>03 · Sistema</span><span>piezas que se hablan</span></div>
-            <div class="stage-visual">
-              <div class="flow-line"></div>
-              <div class="flow f1">Web</div>
-              <div class="flow f2">CRM</div>
-              <div class="flow f3">Ads</div>
-              <div class="flow f4">Apps</div>
-            </div>
-          </article>
-          <article class="stage-slide s4">
-            <div class="stage-label"><span>04 · Ritmo</span><span>un mes de trabajo real</span></div>
-            <div class="stage-visual">
-              <div class="month">
-                <div class="day"><b>Día 1</b><span>Mapa del negocio y prioridades del mes.</span></div>
-                <div class="day"><b>Sem. 1</b><span>Web, CRM y conexión de mensajes.</span></div>
-                <div class="day"><b>Sem. 2-3</b><span>Campañas, ajustes y primeras señales reales.</span></div>
-                <div class="day"><b>Día 30</b><span>Lectura conjunta y decisión del próximo mes.</span></div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="lab" id="servicios">
     <div class="wrap">
       <div class="lab-head">
         <div>
-          <div class="eyebrow">Qué es cada pieza</div>
-          <h2>Cuatro piezas. Una sola lógica.</h2>
+          <div class="eyebrow">Glosario · qué es cada cosa</div>
+          <h2>Las cuatro piezas, definidas.</h2>
         </div>
-        <p>Tocá cada una para ver qué hace y para qué sirve. Las definiciones viven acá; en el resto de la página simplemente las nombramos.</p>
+        <p>Acá explicamos qué es y para qué sirve cada una. En el resto de la página solo las nombramos por su nombre.</p>
       </div>
 
       <div class="service-cockpit reveal">
-        <div class="cockpit-menu" role="tablist" aria-label="Servicios">
-          <button class="cockpit-tab active" type="button" data-service="web" style="--accent: var(--acid)" aria-selected="true"><b>Páginas web</b><span>La cara pública del negocio: qué hace, para quién y cómo se contacta.</span></button>
-          <button class="cockpit-tab" type="button" data-service="crm" style="--accent: var(--cyan)" aria-selected="false"><b>CRM</b><span>El registro interno de cada consulta y su estado real.</span></button>
-          <button class="cockpit-tab" type="button" data-service="ads" style="--accent: var(--blue)" aria-selected="false"><b>Meta y Google Ads</b><span>Tráfico pago con hipótesis, presupuesto definido y lectura semanal.</span></button>
-          <button class="cockpit-tab" type="button" data-service="apps" style="--accent: var(--acid-deep)" aria-selected="false"><b>Aplicaciones</b><span>Herramientas a medida cuando el proceso interno pide algo propio.</span></button>
+        <div class="cockpit-menu" role="tablist" aria-label="Glosario">
+          <button class="cockpit-tab active" type="button" data-service="web" style="--accent: var(--acid)" aria-selected="true"><b>Web</b><span>La cara pública del negocio.</span></button>
+          <button class="cockpit-tab" type="button" data-service="crm" style="--accent: var(--cyan)" aria-selected="false"><b>CRM</b><span>El registro interno de las consultas.</span></button>
+          <button class="cockpit-tab" type="button" data-service="ads" style="--accent: var(--blue)" aria-selected="false"><b>Anuncios</b><span>Tráfico pago, medido y ajustado.</span></button>
+          <button class="cockpit-tab" type="button" data-service="apps" style="--accent: var(--acid-deep)" aria-selected="false"><b>Apps</b><span>Herramientas internas a medida.</span></button>
         </div>
 
         <div class="cockpit-screen">
-          <div class="screen-toolbar"><span id="screenTitle">Páginas web</span><span>ROMANN · service detail</span></div>
+          <div class="screen-toolbar"><span id="screenTitle">Web</span><span>ROMANN · definición</span></div>
 
           <article class="service-panel active" data-panel="web" style="--accent: var(--acid)">
             <div class="service-text">
-              <h3>Una web es una explicación, no un folleto.</h3>
-              <p>Su trabajo es responder rápido las preguntas que cualquiera se hace antes de tomar una decisión: qué hace este negocio, para quién, qué incluye y cómo continúa la conversación.</p>
+              <h3>Web</h3>
+              <p>Es la explicación pública del negocio: qué hace, para quién, qué incluye y cómo seguir la conversación. No un folleto, una lectura guiada que responde sola las preguntas obvias.</p>
               <ul>
-                <li>Arquitectura de información, textos, diseño y publicación.</li>
-                <li>Versión móvil pensada como prioridad, no como adaptación.</li>
-                <li>Dominio, mail corporativo, WhatsApp y medición conectados.</li>
-                <li>Estructura preparada para crecer con contenido y datos.</li>
+                <li>Arquitectura, textos, diseño y publicación.</li>
+                <li>Móvil como prioridad, no como adaptación.</li>
+                <li>Dominio, mail, WhatsApp y medición conectados.</li>
               </ul>
             </div>
-            <div class="holo"><div class="holo-card"><strong>WEB</strong><span>El lugar donde el negocio se explica solo, sin que tengas que estar.</span></div></div>
+            <div class="holo"><div class="holo-card"><strong>WEB</strong><span>El negocio se explica sin que tengas que estar.</span></div></div>
           </article>
 
           <article class="service-panel" data-panel="crm" style="--accent: var(--cyan)">
             <div class="service-text">
-              <h3>El CRM es la memoria del negocio.</h3>
-              <p>Cada consulta queda registrada: quién es, qué pidió, en qué estado está y cuándo hay que volver a escribirle. Lo que antes vivía en cabezas y notas, queda visible para todo el equipo.</p>
+              <h3>CRM</h3>
+              <p>Es la memoria del negocio: cada consulta entra, queda registrada con quién, qué pidió, en qué estado está y cuándo hay que volver a escribirle. Lo que vivía en cabezas, queda visible.</p>
               <ul>
-                <li>Etapas claras: nuevo, en conversación, propuesta, cierre.</li>
-                <li>Recordatorios automáticos para que nada quede sin respuesta.</li>
-                <li>Entrada unificada desde web, WhatsApp, mail o planillas.</li>
-                <li>Vista de pipeline, conversiones y pendientes en tiempo real.</li>
+                <li>Etapas: nuevo, conversación, propuesta, cierre.</li>
+                <li>Recordatorios para que nada quede sin respuesta.</li>
+                <li>Entrada única desde web, mensajería o mail.</li>
               </ul>
             </div>
-            <div class="holo"><div class="holo-card"><strong>CRM</strong><span>Las consultas dejan de depender de la memoria de alguien.</span></div></div>
+            <div class="holo"><div class="holo-card"><strong>CRM</strong><span>Las consultas dejan de depender de la memoria.</span></div></div>
           </article>
 
           <article class="service-panel" data-panel="ads" style="--accent: var(--blue)">
             <div class="service-text">
-              <h3>Los anuncios son hipótesis con presupuesto.</h3>
-              <p>Meta y Google permiten llegar a personas con intención. El trabajo no es prender campañas: es plantear hipótesis, medirlas y dejar que el sistema aprenda qué mensaje funciona y a qué costo.</p>
+              <h3>Anuncios</h3>
+              <p>Hipótesis con presupuesto. Meta y Google permiten llegar a personas con intención; el trabajo es plantear hipótesis, medirlas y dejar que el sistema aprenda qué mensaje funciona y a qué costo.</p>
               <ul>
-                <li>Estrategia de oferta, públicos, presupuesto y creatividad.</li>
-                <li>Configuración técnica: pixel, conversiones y atribución.</li>
-                <li>Lectura semanal de costo por consulta y calidad del lead.</li>
-                <li>Iteración continua sobre lo que está funcionando.</li>
+                <li>Estrategia, públicos, presupuesto y creatividad.</li>
+                <li>Pixel, conversiones y atribución configurados.</li>
+                <li>Lectura semanal de costo y calidad del lead.</li>
               </ul>
             </div>
             <div class="holo"><div class="holo-card"><strong>ADS</strong><span>Tráfico medible que aprende qué mensaje convierte.</span></div></div>
@@ -1889,13 +1794,12 @@
 
           <article class="service-panel" data-panel="apps" style="--accent: var(--acid-deep)">
             <div class="service-text">
-              <h3>Una app aparece cuando la plantilla no alcanza.</h3>
-              <p>Paneles internos, cotizadores, calculadoras, sistemas de reservas, integraciones, automatizaciones: lo que sea que el negocio necesite y todavía no exista en una herramienta lista para comprar.</p>
+              <h3>Apps</h3>
+              <p>Herramientas a medida cuando lo que existe no resuelve. Paneles internos, cotizadores, reservas, calculadoras o automatizaciones que conectan partes del negocio que hoy viven sueltas.</p>
               <ul>
-                <li>Definición del problema antes de escribir una sola línea.</li>
-                <li>Primera versión simple, lanzada rápido, validada con uso real.</li>
-                <li>Integraciones con pagos, formularios, calendarios o datos propios.</li>
-                <li>Mantenimiento incluido mientras la herramienta esté en uso.</li>
+                <li>Problema definido antes de escribir código.</li>
+                <li>Primera versión simple, validada con uso real.</li>
+                <li>Mantenimiento incluido mientras esté en uso.</li>
               </ul>
             </div>
             <div class="holo"><div class="holo-card"><strong>APP</strong><span>Procesos repetitivos convertidos en herramienta propia.</span></div></div>
@@ -1904,7 +1808,6 @@
       </div>
     </div>
   </section>
-
   <section class="reel-section" id="showreel">
     <div class="wrap">
       <div class="reel-head">
@@ -2000,96 +1903,62 @@
       </div>
     </div>
   </section>
-
-  <section class="capabilities" id="capacidades">
-    <div class="wrap">
-      <div class="cap-head">
-        <div>
-          <div class="eyebrow">Capacidades</div>
-          <h2>Lo que normalmente requiere cuatro proveedores, lo hacemos en un sistema.</h2>
+  <section class="sticky-scene" id="sistema">
+    <div class="sticky-stage">
+      <div class="wrap stage-grid">
+        <div class="stage-copy">
+          <div class="eyebrow">El sistema en cuatro pasos</div>
+          <h2 id="stageHeadline">Primero entendemos el negocio.</h2>
+          <p class="lead" id="stageText">Oferta, cliente, precio, margen, proceso de venta y herramientas actuales. Sin ese mapa, cualquier decisión técnica es solo decoración.</p>
+          <div class="steps" aria-label="Progreso de narrativa">
+            <div class="step-dot active"><span></span></div>
+            <div class="step-dot"><span></span></div>
+            <div class="step-dot"><span></span></div>
+            <div class="step-dot"><span></span></div>
+          </div>
         </div>
-        <p>Más allá del trabajo visible (web, CRM, anuncios, apps), el sistema incluye capacidades que aparecen sin que tengas que pedirlas. Acá hay seis ejemplos.</p>
-      </div>
-
-      <div class="cap-grid">
-        <article class="cap-card">
-          <div class="cap-num">01</div>
-          <div class="cap-visual vis-dash">
-            <i class="row" style="--w:60%"></i>
-            <i class="row"></i>
-            <i class="row"></i>
-            <i class="row"></i>
-          </div>
-          <h3>Tablero único de operación.</h3>
-          <p>Visitas web, consultas nuevas, estado del pipeline, costo por lead, automatizaciones activas. Todo en una sola pantalla, en tiempo real, sin tener que abrir cinco plataformas.</p>
-        </article>
-
-        <article class="cap-card">
-          <div class="cap-num">02</div>
-          <div class="cap-visual vis-report">
-            <div class="panel"><i></i><i></i><i></i></div>
-            <div class="panel"><i></i><i></i><i></i></div>
-            <div class="panel"><i></i><i></i><i></i></div>
-            <div class="panel"><i></i><i></i><i></i></div>
-          </div>
-          <h3>Reporte semanal con interpretación.</h3>
-          <p>Cada lunes recibís un resumen leído: qué pasó la semana pasada, qué cambió, qué decisión propone el equipo y qué se está ejecutando. No son métricas crudas, es lectura útil.</p>
-        </article>
-
-        <article class="cap-card">
-          <div class="cap-num">03</div>
-          <div class="cap-visual vis-chat">
-            <div class="bubble">Hola, quiero saber precios para 50 personas.</div>
-            <div class="bubble me">¡Hola! Te paso el detalle ahora mismo.</div>
-            <div class="bubble">Perfecto, ¿en qué fecha sería?</div>
-          </div>
-          <h3>WhatsApp que nunca duerme.</h3>
-          <p>Respuestas inmediatas con tono propio, derivación a una persona cuando hace falta, agenda automática y registro directo en el CRM. La consulta entra y empieza a trabajarse aunque sean las 3 de la mañana.</p>
-        </article>
-
-        <article class="cap-card">
-          <div class="cap-num">04</div>
-          <div class="cap-visual vis-orbit">
-            <span class="ring"></span>
-            <span class="ring b"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="center">+</span>
-          </div>
-          <h3>Integraciones que evitan tareas manuales.</h3>
-          <p>Mercado Pago, Stripe, Calendly, Google Calendar, facturación, Notion, Sheets, n8n. Conectamos lo que el negocio ya usa para que los datos viajen solos en lugar de copiarse a mano.</p>
-        </article>
-
-        <article class="cap-card">
-          <div class="cap-num">05</div>
-          <div class="cap-visual vis-seo">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </div>
-          <h3>SEO técnico y contenido que crece con el tiempo.</h3>
-          <p>Estructura, velocidad, schema, sitemap, contenido orientado a búsquedas reales del negocio. Lo que lográs en anuncios da resultado en el día, lo que lográs acá deja activo permanente.</p>
-        </article>
-
-        <article class="cap-card">
-          <div class="cap-num">06</div>
-          <div class="cap-visual vis-ab">
-            <div class="v"><b>VARIANTE A</b><i></i><i></i><i></i></div>
-            <div class="v win"><b>VARIANTE B · GANA</b><i></i><i></i><i></i></div>
-          </div>
-          <h3>Experimentos continuos sobre lo que ya funciona.</h3>
-          <p>Probamos titulares, ofertas, creatividades y secciones de la web en paralelo. La versión que gana queda y la que pierde se descarta. El sistema mejora solo, sin esperar a una "próxima versión".</p>
-        </article>
+        <div class="stage-frame">
+          <article class="stage-slide s1 active">
+            <div class="stage-label"><span>01 · Diagnóstico</span><span>negocio antes que diseño</span></div>
+            <div class="stage-visual">
+              <div class="story-card a"><b>Qué se vende</b><span>Traducimos la oferta a una explicación clara y verificable.</span></div>
+              <div class="story-card b"><b>A quién</b><span>Definimos cliente ideal, contexto y objeciones reales.</span></div>
+              <div class="story-card c"><b>Cómo se compra hoy</b><span>Mapeamos el camino actual, sus fugas y sus tiempos.</span></div>
+            </div>
+          </article>
+          <article class="stage-slide s2">
+            <div class="stage-label"><span>02 · Medición</span><span>cada decisión deja un dato</span></div>
+            <div class="stage-visual">
+              <div class="metric m1"><span><strong>30</strong>días para leer señales</span></div>
+              <div class="metric m2"><span><strong>4</strong>áreas conectadas</span></div>
+              <div class="metric m3"><span><strong>1</strong>tablero único</span></div>
+            </div>
+          </article>
+          <article class="stage-slide s3">
+            <div class="stage-label"><span>03 · Sistema</span><span>piezas que se hablan</span></div>
+            <div class="stage-visual">
+              <div class="flow-line"></div>
+              <div class="flow f1">Web</div>
+              <div class="flow f2">CRM</div>
+              <div class="flow f3">Ads</div>
+              <div class="flow f4">Apps</div>
+            </div>
+          </article>
+          <article class="stage-slide s4">
+            <div class="stage-label"><span>04 · Ritmo</span><span>un mes de trabajo real</span></div>
+            <div class="stage-visual">
+              <div class="month">
+                <div class="day"><b>Día 1</b><span>Mapa del negocio y prioridades del mes.</span></div>
+                <div class="day"><b>Sem. 1</b><span>Web, CRM y conexión de mensajes.</span></div>
+                <div class="day"><b>Sem. 2-3</b><span>Campañas, ajustes y primeras señales reales.</span></div>
+                <div class="day"><b>Día 30</b><span>Lectura conjunta y decisión del próximo mes.</span></div>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </section>
-
   <section class="circuit" id="circuito">
     <div class="wrap">
       <div class="circuit-head">
@@ -2214,6 +2083,132 @@
       </div>
     </div>
   </section>
+  <section class="capabilities" id="capacidades">
+    <div class="wrap">
+      <div class="cap-head">
+        <div>
+          <div class="eyebrow">Capacidades</div>
+          <h2>Lo que normalmente requiere cuatro proveedores, lo hacemos en un sistema.</h2>
+        </div>
+        <p>Más allá del trabajo visible (web, CRM, anuncios, apps), el sistema incluye capacidades que aparecen sin que tengas que pedirlas. Acá hay seis ejemplos.</p>
+      </div>
+
+      <div class="cap-grid">
+        <article class="cap-card">
+          <div class="cap-num">01</div>
+          <div class="cap-visual vis-dash">
+            <i class="row" style="--w:60%"></i>
+            <i class="row"></i>
+            <i class="row"></i>
+            <i class="row"></i>
+          </div>
+          <h3>Tablero único de operación.</h3>
+          <p>Visitas web, consultas nuevas, estado del pipeline, costo por lead, automatizaciones activas. Todo en una sola pantalla, en tiempo real, sin tener que abrir cinco plataformas.</p>
+        </article>
+
+        <article class="cap-card">
+          <div class="cap-num">02</div>
+          <div class="cap-visual vis-report">
+            <div class="panel"><i></i><i></i><i></i></div>
+            <div class="panel"><i></i><i></i><i></i></div>
+            <div class="panel"><i></i><i></i><i></i></div>
+            <div class="panel"><i></i><i></i><i></i></div>
+          </div>
+          <h3>Reporte semanal con interpretación.</h3>
+          <p>Cada lunes recibís un resumen leído: qué pasó la semana pasada, qué cambió, qué decisión propone el equipo y qué se está ejecutando. No son métricas crudas, es lectura útil.</p>
+        </article>
+
+        <article class="cap-card">
+          <div class="cap-num">03</div>
+          <div class="cap-visual vis-chat">
+            <div class="bubble">Hola, quiero saber precios para 50 personas.</div>
+            <div class="bubble me">¡Hola! Te paso el detalle ahora mismo.</div>
+            <div class="bubble">Perfecto, ¿en qué fecha sería?</div>
+          </div>
+          <h3>WhatsApp que nunca duerme.</h3>
+          <p>Respuestas inmediatas con tono propio, derivación a una persona cuando hace falta, agenda automática y registro directo en el CRM. La consulta entra y empieza a trabajarse aunque sean las 3 de la mañana.</p>
+        </article>
+
+        <article class="cap-card">
+          <div class="cap-num">04</div>
+          <div class="cap-visual vis-orbit">
+            <span class="ring"></span>
+            <span class="ring b"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="center">+</span>
+          </div>
+          <h3>Integraciones que evitan tareas manuales.</h3>
+          <p>Mercado Pago, Stripe, Calendly, Google Calendar, facturación, Notion, Sheets, n8n. Conectamos lo que el negocio ya usa para que los datos viajen solos en lugar de copiarse a mano.</p>
+        </article>
+
+        <article class="cap-card">
+          <div class="cap-num">05</div>
+          <div class="cap-visual vis-seo">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+          <h3>SEO técnico y contenido que crece con el tiempo.</h3>
+          <p>Estructura, velocidad, schema, sitemap, contenido orientado a búsquedas reales del negocio. Lo que lográs en anuncios da resultado en el día, lo que lográs acá deja activo permanente.</p>
+        </article>
+
+        <article class="cap-card">
+          <div class="cap-num">06</div>
+          <div class="cap-visual vis-ab">
+            <div class="v"><b>VARIANTE A</b><i></i><i></i><i></i></div>
+            <div class="v win"><b>VARIANTE B · GANA</b><i></i><i></i><i></i></div>
+          </div>
+          <h3>Experimentos continuos sobre lo que ya funciona.</h3>
+          <p>Probamos titulares, ofertas, creatividades y secciones de la web en paralelo. La versión que gana queda y la que pierde se descarta. El sistema mejora solo, sin esperar a una "próxima versión".</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="trust-layer" id="confianza">
+    <div class="wrap trust-grid">
+      <div class="trust-copy">
+        <div>
+          <div class="eyebrow">Cómo arrancamos</div>
+          <h2>Antes de proponer, entendemos.</h2>
+        </div>
+        <p class="lead">Miramos cómo está armado el negocio: qué se vende, a quién, cómo entran las consultas y qué pasa después. Lo que decide qué construir es ese mapa, no una plantilla.</p>
+        <div class="proof-stack" aria-label="Etapas del trabajo">
+          <div class="proof"><b>01</b><span>Diagnóstico de oferta, cliente y proceso comercial actual.</span></div>
+          <div class="proof"><b>02</b><span>Plan visible con prioridades y forma de medir cada decisión.</span></div>
+          <div class="proof"><b>03</b><span>Operación mensual continua, no entregables sueltos.</span></div>
+        </div>
+      </div>
+
+      <div class="diagnostic">
+        <div class="diagnostic-top">
+          <span>ROMANN / DIAGNOSTIC SCANNER</span>
+          <span id="scanScore">EJE 01 / CLARIDAD</span>
+        </div>
+        <div class="diagnostic-body">
+          <div class="pain-buttons" aria-label="Áreas que revisamos">
+            <button class="pain active" type="button" data-pain="clarity" style="--accent: var(--acid)"><span class="num">01</span><b>Claridad de la oferta</b></button>
+            <button class="pain" type="button" data-pain="followup" style="--accent: var(--cyan)"><span class="num">02</span><b>Manejo de consultas</b></button>
+            <button class="pain" type="button" data-pain="traffic" style="--accent: var(--blue)"><span class="num">03</span><b>Origen del tráfico</b></button>
+            <button class="pain" type="button" data-pain="process" style="--accent: var(--acid-deep)"><span class="num">04</span><b>Procesos internos</b></button>
+          </div>
+          <div class="scanner" id="scanner">
+            <div class="scanner-output">
+              <b id="scanTitle">Claridad de la oferta</b>
+              <span id="scanText">Revisamos cómo está descripta la propuesta hoy y la traducimos a una versión que se entienda en pocos segundos: qué hace, para quién, qué incluye y cuál es el próximo paso natural.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <section class="builder" id="paquete">
     <div class="wrap">
