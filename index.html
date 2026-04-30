@@ -784,7 +784,7 @@
     height: 100%;
     width: 0;
     background: var(--acid);
-    animation: reelProgress 7s linear infinite;
+    animation: reelProgress 12s linear infinite;
   }
   @keyframes reelProgress { to { width: 100%; } }
   .reel-scene {
@@ -1828,10 +1828,10 @@
     <div class="wrap">
       <div class="lab-head">
         <div>
-          <div class="eyebrow">Servicios</div>
+          <div class="eyebrow">Qué es cada pieza</div>
           <h2>Cuatro piezas. Una sola lógica.</h2>
         </div>
-        <p>Cada servicio resuelve una parte concreta del negocio. Cuando trabajan juntos, dejan de ser entregables sueltos y se vuelven una infraestructura que se puede leer, medir y ajustar.</p>
+        <p>Tocá cada una para ver qué hace y para qué sirve. Las definiciones viven acá; en el resto de la página simplemente las nombramos.</p>
       </div>
 
       <div class="service-cockpit reveal">
@@ -1912,15 +1912,15 @@
           <div class="eyebrow">El sistema en movimiento</div>
           <h2>Cómo se ve cada pieza cuando está operando.</h2>
         </div>
-        <p>Mostramos lo que pasa adentro de cada módulo en un día normal: una web que explica, un pipeline que avanza, campañas leyendo datos y herramientas internas resolviendo procesos.</p>
+        <p>Cuatro escenas animadas, una por módulo, que muestran el sistema en un día normal.</p>
       </div>
 
       <div class="reel-shell">
         <div class="reel-menu" aria-label="Showreel de servicios">
-          <button class="reel-tab active" type="button" data-reel="web" style="--accent: var(--acid)"><b>Web operando</b><span>Estructura clara para que el visitante entienda solo.</span></button>
-          <button class="reel-tab" type="button" data-reel="crm" style="--accent: var(--cyan)"><b>CRM en movimiento</b><span>Las consultas avanzan por etapas con seguimiento real.</span></button>
-          <button class="reel-tab" type="button" data-reel="ads" style="--accent: var(--blue)"><b>Anuncios aprendiendo</b><span>Las campañas muestran qué mensaje tiene tracción.</span></button>
-          <button class="reel-tab" type="button" data-reel="apps" style="--accent: var(--acid-deep)"><b>Apps internas</b><span>Procesos que dejan de vivir en planillas.</span></button>
+          <button class="reel-tab active" type="button" data-reel="web" style="--accent: var(--acid)"><b>Web</b><span>Página viva.</span></button>
+          <button class="reel-tab" type="button" data-reel="crm" style="--accent: var(--cyan)"><b>CRM</b><span>Pipeline en movimiento.</span></button>
+          <button class="reel-tab" type="button" data-reel="ads" style="--accent: var(--blue)"><b>Anuncios</b><span>Campañas aprendiendo.</span></button>
+          <button class="reel-tab" type="button" data-reel="apps" style="--accent: var(--acid-deep)"><b>Apps</b><span>Procesos resueltos.</span></button>
         </div>
 
         <div class="reel-stage">
@@ -1931,10 +1931,8 @@
 
           <article class="reel-scene active" data-reel-panel="web" style="--accent: var(--acid)">
             <div class="reel-copy">
-              <div class="eyebrow">01 · Página web</div>
-              <h3>La web deja de ser cartel y empieza a explicar.</h3>
-              <p>La estructura guía al visitante: contexto, propuesta, alcance, formas de trabajar y el próximo paso natural para conversar.</p>
-              <div class="reel-tags"><span>Copy claro</span><span>Mobile-first</span><span>Medición integrada</span></div>
+              <div class="eyebrow">01 · Web</div>
+              <h3>Lectura instantánea.</h3>
             </div>
             <div class="video-card web-film">
               <div class="video-frame">
@@ -1954,9 +1952,7 @@
           <article class="reel-scene" data-reel-panel="crm" style="--accent: var(--cyan)">
             <div class="reel-copy">
               <div class="eyebrow">02 · CRM</div>
-              <h3>Las consultas se transforman en pipeline.</h3>
-              <p>El equipo ve qué oportunidades están nuevas, cuáles esperan respuesta y cuáles tienen una decisión pendiente. Nada se pierde por descuido.</p>
-              <div class="reel-tags"><span>Pipeline</span><span>Recordatorios</span><span>Métricas</span></div>
+              <h3>Pipeline avanzando.</h3>
             </div>
             <div class="video-card crm-film">
               <div class="video-frame">
@@ -1972,9 +1968,7 @@
           <article class="reel-scene" data-reel-panel="ads" style="--accent: var(--blue)">
             <div class="reel-copy">
               <div class="eyebrow">03 · Anuncios</div>
-              <h3>Las campañas aprenden de lo que pasa después del clic.</h3>
-              <p>Lo que ocurre en el CRM le devuelve información a Meta y Google: qué consultas son reales, cuáles cierran y qué creatividad lo está logrando.</p>
-              <div class="reel-tags"><span>Meta</span><span>Google</span><span>Leads</span><span>Atribución</span></div>
+              <h3>Campañas con feedback.</h3>
             </div>
             <div class="video-card ads-film">
               <div class="video-frame">
@@ -1986,10 +1980,8 @@
 
           <article class="reel-scene" data-reel-panel="apps" style="--accent: var(--acid-deep)">
             <div class="reel-copy">
-              <div class="eyebrow">04 · Aplicaciones</div>
-              <h3>Cuando una plantilla no alcanza, se diseña una herramienta propia.</h3>
-              <p>Paneles internos, cotizadores, reservas, calculadoras o automatizaciones que conectan partes del negocio que hoy viven separadas.</p>
-              <div class="reel-tags"><span>Producto interno</span><span>Automatizaciones</span><span>Integraciones</span></div>
+              <div class="eyebrow">04 · Apps</div>
+              <h3>Procesos como herramienta.</h3>
             </div>
             <div class="video-card apps-film">
               <div class="video-frame">
@@ -2115,8 +2107,8 @@
             <path id="wire-02" d="M 600 137 C 820 137 1032 170 1032 228" />
             <path id="wire-03" d="M 1032 228 C 1032 320 800 380 600 380" />
             <path id="wire-04" d="M 600 380 C 460 380 320 380 168 380" />
-            <path id="wire-05" d="M 168 380 C 168 540 380 624 600 624" />
-            <path id="wire-06" d="M 600 624 C 780 624 1032 580 1032 532" />
+            <path id="wire-05" d="M 168 380 C 380 380 820 460 1032 532" />
+            <path id="wire-06" d="M 1032 532 C 940 600 780 624 600 624" />
             <path id="wire-07" d="M 1032 532 C 1032 470 720 430 168 430" />
             <path id="wire-08" d="M 600 624 C 460 624 320 624 168 624" />
             <path id="wire-09" d="M 168 624 C 60 624 60 137 156 137" />
@@ -2126,7 +2118,7 @@
           <use href="#wire-02" class="wire blue" />
           <use href="#wire-03" class="wire cyan" />
           <use href="#wire-04" class="wire cyan" />
-          <use href="#wire-05" class="wire cyan" />
+          <use href="#wire-05" class="wire coral" />
           <use href="#wire-06" class="wire coral" />
           <use href="#wire-07" class="wire cyan dashed" />
           <use href="#wire-08" class="wire coral" />
@@ -2145,7 +2137,7 @@
           <circle class="pulse blue"  r="5"><animateMotion dur="11s" begin="-9s"  repeatCount="indefinite" rotate="auto"><mpath href="#wire-02" /></animateMotion></circle>
           <circle class="pulse cyan"  r="5"><animateMotion dur="11s" begin="-7s"  repeatCount="indefinite" rotate="auto"><mpath href="#wire-03" /></animateMotion></circle>
           <circle class="pulse cyan"  r="5"><animateMotion dur="11s" begin="-5s"  repeatCount="indefinite" rotate="auto"><mpath href="#wire-04" /></animateMotion></circle>
-          <circle class="pulse cyan"  r="5"><animateMotion dur="11s" begin="-3s"  repeatCount="indefinite" rotate="auto"><mpath href="#wire-05" /></animateMotion></circle>
+          <circle class="pulse coral" r="5"><animateMotion dur="11s" begin="-3s"  repeatCount="indefinite" rotate="auto"><mpath href="#wire-05" /></animateMotion></circle>
           <circle class="pulse coral" r="5"><animateMotion dur="11s" begin="-1s"  repeatCount="indefinite" rotate="auto"><mpath href="#wire-06" /></animateMotion></circle>
           <circle class="pulse coral" r="5"><animateMotion dur="11s" begin="-10s" repeatCount="indefinite" rotate="auto"><mpath href="#wire-08" /></animateMotion></circle>
           <circle class="pulse cyan"  r="4"><animateMotion dur="9s"  begin="-2s"  repeatCount="indefinite" rotate="auto"><mpath href="#wire-07" /></animateMotion></circle>
@@ -2235,10 +2227,10 @@
             <p>Estrategia, ejecución, mantenimiento e iteración. Un equipo asignado, un tablero compartido y un ritmo mensual con foco real.</p>
           </div>
           <div class="toggle-grid" aria-label="Módulos incluidos">
-            <button class="stack-toggle active" type="button" data-stack="web" style="--accent: var(--acid)"><b>Web</b><span>Sitio, contenido, mantenimiento y mejoras.</span></button>
-            <button class="stack-toggle active" type="button" data-stack="crm" style="--accent: var(--cyan)"><b>CRM</b><span>Pipeline, automatizaciones y métricas.</span></button>
-            <button class="stack-toggle active" type="button" data-stack="ads" style="--accent: var(--blue)"><b>Anuncios</b><span>Meta, Google, lectura semanal e iteración.</span></button>
-            <button class="stack-toggle active" type="button" data-stack="apps" style="--accent: var(--acid-deep)"><b>Apps</b><span>Herramientas internas cuando hacen falta.</span></button>
+            <button class="stack-toggle active" type="button" data-stack="web" style="--accent: var(--acid)"><b>Web</b><span>Incluida</span></button>
+            <button class="stack-toggle active" type="button" data-stack="crm" style="--accent: var(--cyan)"><b>CRM</b><span>Incluido</span></button>
+            <button class="stack-toggle active" type="button" data-stack="ads" style="--accent: var(--blue)"><b>Anuncios</b><span>Incluidos</span></button>
+            <button class="stack-toggle active" type="button" data-stack="apps" style="--accent: var(--acid-deep)"><b>Apps</b><span>Incluidas</span></button>
           </div>
           <p class="package-note">Pensado como un sistema completo, pero no es una caja rígida. <strong>Si tu negocio necesita más, se suma. Si necesita menos, se ajusta.</strong> La conversación inicial define el alcance real.</p>
           <a class="btn" href="https://wa.me/541178243212?text=Hola%20Romann%2C%20quiero%20conocer%20el%20paquete%20mensual." target="_blank" rel="noopener">Conversar sobre el paquete</a>
@@ -2476,13 +2468,13 @@
   setInterval(() => {
     const reelBox = document.getElementById("showreel").getBoundingClientRect();
     if (reelBox.top < innerHeight && reelBox.bottom > 0) setReel(reelIndex + 1);
-  }, 7000);
+  }, 12000);
 
   const stackText = {
-    web: ["Web", "La persona que llega entiende qué hace el negocio y tiene un camino claro para conversar."],
-    crm: ["CRM", "Cada consulta queda registrada con estado, responsable y próximo paso. Nada vive en cabezas."],
-    ads: ["Anuncios", "Meta y Google traen demanda nueva. La lectura semanal define qué creatividad y qué oferta queda."],
-    apps: ["Apps", "Cuando una herramienta lista no resuelve, se construye una propia. Mantenimiento incluido."]
+    web: ["Web", "Sitio activo con contenido y mantenimiento mensual."],
+    crm: ["CRM", "Pipeline operando con métricas y recordatorios."],
+    ads: ["Anuncios", "Campañas con presupuesto controlado y lectura semanal."],
+    apps: ["Apps", "Herramientas internas cuando hagan falta."]
   };
   const toggles = document.querySelectorAll(".stack-toggle");
   const output = document.getElementById("resultOutput");
